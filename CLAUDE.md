@@ -77,7 +77,7 @@ static/                    # only files needing exact paths (favicon, robots.txt
 ## Design constraints
 
 - **Pring**: engineering notebook. Graph-paper background, clean sans with monospace labels, one muted accent (Himmel blue) used sparingly, projects shown as closed issues, a "currently" block. Short, plain voice.
-- **Natalie**: pastel scrapbook. Cream, blush, peach and navy with a small bow-red pop, gingham/argyle background, softer rounded or serif type, projects as taped-on cards, leads with art. Excited, gushing voice. Anime references are **vibe and palette only**: no character names, art or catchphrases on the site.
+- **Natalie**: pastel scrapbook. Cream, blush, peach and navy with a small bow-red pop, gingham/argyle background, softer rounded or serif type, projects as taped-on cards, leads with art. Excited, gushing voice. Character names and catchphrases are allowed. Natalie's side may use Pinterest-style found images and official anime art (e.g. her profile picture) as scrapbook decoration; credit or link the source where practical. Pring's side stays plain.
 - Grounded tone: no gradient or glow effects, no self-ratings or skill bars.
 - Slottle is credited honestly as QA work. The Experience page (for employers) stays off the main pages.
 - Headless component and icon libraries (Bits UI / shadcn-svelte, Lucide, Iconify, Phosphor) are welcome but must be restyled per persona so neither looks like a default kit. Check icon licenses.

@@ -15,7 +15,7 @@ Two personas over the same content, each with light and dark mode:
 | Color             | Flat, one muted accent; charcoal dark mode | Pinks, cream, lavender, pale blue-green    |
 | Voice             | Short and plain                            | Marin-energy: excited, unfiltered, gushing |
 
-Inspiration for Natalie: Marin Kitagawa (_Sono Bisque Doll_), Aya (_The Guy She Was Interested In Wasn't a Guy at All_), _Cosmic Princess Kaguya_. Take the **vibe and palette only**. No character names, art or catchphrases on the site.
+Inspiration for Natalie: Marin Kitagawa (_Sono Bisque Doll_), Aya (_The Guy She Was Interested In Wasn't a Guy at All_), _Cosmic Princess Kaguya_. Character names and catchphrases are fine. Natalie's side is Pinterest-style scrapbook, so it can use found images and official art (e.g. Sono Bisque Doll art as her profile picture); credit or link the source where practical.
 
 Example Natalie copy:
 
