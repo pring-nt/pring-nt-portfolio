@@ -10,7 +10,10 @@ export type Project = {
 	repo?: string;
 	site?: string;
 	tags: string[];
-	/** Pring frames projects as closed issues against the world. */
+	/**
+	 * Pring frames projects as closed issues against the world. The "closed by" line is derived from
+	 * `role`: `built` → closed by `slug`, `qa` → closed by the team · QA'd by me.
+	 */
 	issue?: { number: number; title: string; body?: string };
 	/** Natalie's version, in her own voice. Falls back to `summary`. */
 	natalie?: string;
@@ -26,7 +29,19 @@ export type Link = {
 
 export type CurrentlyItem = { label: string; value: string };
 
-export type Like = { title: string; kind: 'anime' | 'manga' | 'game' | 'other'; note?: string };
+export type Like = {
+	title: string;
+	kind: 'anime' | 'manga' | 'game' | 'other';
+	/** Natalie's gush about it. */
+	natalie?: string;
+};
+
+export type PersonaProfile = {
+	name: string;
+	intro: string;
+	/** Footer line that leads to the other persona. */
+	switchHint: string;
+};
 
 export type Artwork = {
 	image: Picture;
