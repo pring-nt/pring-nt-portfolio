@@ -1,5 +1,10 @@
 import type { Education, Experience, SkillGroup } from './types.ts';
 
+export const resume = {
+	name: 'Nathan Trinidad',
+	tagline: 'Software Engineering undergraduate · Manila, Philippines'
+};
+
 export const education: Education = {
 	school: 'De La Salle University — Manila',
 	degree: 'B.S. Computer Science, Major in Software Technology',

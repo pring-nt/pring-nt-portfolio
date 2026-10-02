@@ -88,4 +88,4 @@ Cloudflare Pages (build `bun run build`, output `build`), separate from Nockr's 
 
 ## Formatting
 
-Prettier: tabs, single quotes, no trailing commas, `printWidth: 100`, with `prettier-plugin-svelte` and `prettier-plugin-tailwindcss` (its `tailwindStylesheet` points at `src/routes/layout.css`; update it if the stylesheet moves). ESLint uses flat config with typescript-eslint + eslint-plugin-svelte.
+Prettier: tabs, single quotes, no trailing commas, `printWidth: 100`, with `prettier-plugin-svelte` and `prettier-plugin-tailwindcss` (its `tailwindStylesheet` points at `src/app.css`). ESLint uses flat config with typescript-eslint + eslint-plugin-svelte.
