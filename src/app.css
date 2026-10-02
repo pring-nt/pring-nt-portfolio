@@ -115,10 +115,36 @@
 }
 
 @layer base {
+	:root:not([data-theme]),
+	[data-theme^='pring'] {
+		--scrollbar: color-mix(in srgb, var(--ink) 30%, transparent);
+	}
+
+	[data-theme^='natalie'] {
+		--scrollbar: var(--accent);
+	}
+
 	html {
 		background-color: var(--bg);
 		color: var(--ink);
 		font-family: var(--font-body);
+		scrollbar-width: thin;
+		scrollbar-color: var(--scrollbar) transparent;
+	}
+
+	@supports not (scrollbar-color: auto) {
+		::-webkit-scrollbar {
+			width: 10px;
+			height: 10px;
+		}
+		::-webkit-scrollbar-track {
+			background: var(--bg);
+		}
+		::-webkit-scrollbar-thumb {
+			background: var(--scrollbar);
+			border: 2px solid var(--bg);
+			border-radius: 999px;
+		}
 	}
 }
 
