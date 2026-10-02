@@ -6,16 +6,16 @@ A grounded personal site. No gradient or glow spam, no self-ratings. It shows wh
 
 Two personas over the same content, each with light and dark mode:
 
-| | **Pring** (Nathan, `pring-nt`) | **Natalie** |
-|---|---|---|
-| Feel | Engineering notebook | Pastel scrapbook |
-| Leads with | Projects + "currently" block | Art, then things I like |
-| Projects shown as | Closed issues against the world | Small taped-on cards |
-| Type | Clean sans + monospace accents | Softer rounded/serif font |
-| Color | Flat, one muted accent; charcoal dark mode | Pinks, cream, lavender, pale blue-green |
-| Voice | Short and plain | Marin-energy: excited, unfiltered, gushing |
+|                   | **Pring** (Nathan, `pring-nt`)             | **Natalie**                                |
+| ----------------- | ------------------------------------------ | ------------------------------------------ |
+| Feel              | Engineering notebook                       | Pastel scrapbook                           |
+| Leads with        | Projects + "currently" block               | Art, then things I like                    |
+| Projects shown as | Closed issues against the world            | Small taped-on cards                       |
+| Type              | Clean sans + monospace accents             | Softer rounded/serif font                  |
+| Color             | Flat, one muted accent; charcoal dark mode | Pinks, cream, lavender, pale blue-green    |
+| Voice             | Short and plain                            | Marin-energy: excited, unfiltered, gushing |
 
-Inspiration for Natalie: Marin Kitagawa (*Sono Bisque Doll*), Aya (*The Guy She Was Interested In Wasn't a Guy at All*), *Cosmic Princess Kaguya*. Take the **vibe and palette only**. No character names, art or catchphrases on the site.
+Inspiration for Natalie: Marin Kitagawa (_Sono Bisque Doll_), Aya (_The Guy She Was Interested In Wasn't a Guy at All_), _Cosmic Princess Kaguya_. Take the **vibe and palette only**. No character names, art or catchphrases on the site.
 
 Example Natalie copy:
 
@@ -24,6 +24,7 @@ Example Natalie copy:
 ## Pring details
 
 **Engineering notebook look**
+
 - Faint graph-paper background, clean type, monospace labels
 - A few of my own sketches in the margins (arrows, a doodled cursor, a tiny self-portrait)
 - Calm, but clearly made by a person. Quietly hints that Natalie exists.
@@ -38,6 +39,7 @@ Example Natalie copy:
 Slottle is listed as "QA'd by me".
 
 **"Currently" block** (edited whenever I feel like it)
+
 - building: my TGPA for this term
 - watching: JJBA Part 7
 - annoyed by: Nockr's Export Card design
@@ -47,30 +49,33 @@ Slottle is listed as "QA'd by me".
 Shared thread: **navy** shows up in both (Himmel's blues, Marin's blazer), so the personas feel related.
 
 ### Pring: muted notebook + Himmel blue
-| Token | Light | Dark |
-|---|---|---|
-| bg (paper) | `#F4F2EC` | `#1C1F24` |
-| grid lines | `#E3E0D8` | `#2A2E35` |
-| text (ink) | `#2A2D33` | `#E4E2DC` |
-| muted text | `#6B6E75` | `#9A9DA4` |
+
+| Token                | Light     | Dark      |
+| -------------------- | --------- | --------- |
+| bg (paper)           | `#F4F2EC` | `#1C1F24` |
+| grid lines           | `#E3E0D8` | `#2A2E35` |
+| text (ink)           | `#2A2D33` | `#E4E2DC` |
+| muted text           | `#6B6E75` | `#9A9DA4` |
 | accent (Himmel blue) | `#4F6FA3` | `#93AFD6` |
-| accent soft | `#C9D7EA` | `#2E3A57` |
+| accent soft          | `#C9D7EA` | `#2E3A57` |
 
 Blue used sparingly: links, issue numbers, the "currently" labels, the odd margin doodle.
 
 ### Natalie: Marin pastel
+
 From the references: blush pink, off-white, peach, uniform navy, red bow.
 
-| Token | Light | Dark |
-|---|---|---|
-| bg | `#FBF4EF` (cream) | `#1F2640` (navy) |
-| surface / cards | `#F7D6DE` (blush) | `#2E3A57` |
-| text | `#2E3A57` (navy, not black) | `#F3EEE8` |
-| accent pink | `#E8949F` | `#F0A8B4` |
-| peach | `#F2CFAE` | `#E9C4A2` |
-| pop (bow red) | `#C8323E` | `#E0525C` |
+| Token           | Light                       | Dark             |
+| --------------- | --------------------------- | ---------------- |
+| bg              | `#FBF4EF` (cream)           | `#1F2640` (navy) |
+| surface / cards | `#F7D6DE` (blush)           | `#2E3A57`        |
+| text            | `#2E3A57` (navy, not black) | `#F3EEE8`        |
+| accent pink     | `#E8949F`                   | `#F0A8B4`        |
+| peach           | `#F2CFAE`                   | `#E9C4A2`        |
+| pop (bow red)   | `#C8323E`                   | `#E0525C`        |
 
 Notes:
+
 - Light pink fails contrast as text, so it's for backgrounds and decoration only; links use navy or red
 - Background pattern: soft pink gingham/argyle, Natalie's answer to Pring's graph paper
 - Red is a small pop only (bows, stickers, highlights)
@@ -87,22 +92,26 @@ Notes:
 ## Content
 
 ### Main pages (things I'm proud of)
+
 - **Nockr**: GPA/GWA/honors tracker. "I got tired of other people's GPA calculators."
 - **enroll_clicker**: "Tired of sniping GE slots?"
 - **Slottle**: credited honestly as QA (testing, issue tracking; reached 1,000+ downloads)
 - **fb-graphql-interceptor**: optional, the "normal way didn't work so I went around it" story
 
 ### Natalie extras
+
 - Art gallery (see Assets)
-- Things I like: *Sono Bisque Doll*, *Frieren*
+- Things I like: _Sono Bisque Doll_, _Frieren_
 - Optional joke footnote: YuriBetterThanYaoi
 
 ### Experience page (for employers, kept off the main pages)
+
 - BoomBox Gym, NATS (hackathon), Wi-Fi Evolution
 - Course projects (fantastic-dorms, etc.) only if wanted
 - Link to CV
 
 ### Links
+
 - Email: natetrndd@gmail.com
 - GitHub: github.com/pring-nt
 - LinkedIn
