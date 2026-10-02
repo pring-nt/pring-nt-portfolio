@@ -1,7 +1,16 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:where([data-theme$='-dark'], [data-theme$='-dark'] *));
-@custom-variant pring (&:where([data-theme^='pring'], [data-theme^='pring'] *));
+@custom-variant dark {
+	&:where([data-theme$='-dark'], [data-theme$='-dark'] *) {
+		@slot;
+	}
+	@media (prefers-color-scheme: dark) {
+		&:where(:root:not([data-theme]), :root:not([data-theme]) *) {
+			@slot;
+		}
+	}
+}
+@custom-variant pring (&:where([data-theme^='pring'], [data-theme^='pring'] *, :root:not([data-theme]) *));
 @custom-variant natalie (&:where([data-theme^='natalie'], [data-theme^='natalie'] *));
 
 @theme inline {
@@ -110,5 +119,17 @@
 		background-color: var(--bg);
 		color: var(--ink);
 		font-family: var(--font-body);
+	}
+}
+
+@layer base {
+	:root:not([data-theme]) body,
+	[data-theme^='pring'] body {
+		background-image:
+			linear-gradient(var(--grid) 1px, transparent 1px),
+			linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+		--grid: color-mix(in srgb, var(--line) 65%, transparent);
+		background-size: 24px 24px;
+		background-position: -1px -1px;
 	}
 }
