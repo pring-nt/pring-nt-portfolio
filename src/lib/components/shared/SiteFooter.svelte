@@ -8,7 +8,7 @@
 		{#each links as link (link.kind)}
 			<li>
 				<a class="text-link hover:underline" href={link.href}>
-					<span class="font-mono text-xs text-muted">{link.label}</span>
+					<span class="text-xs text-muted pring:font-mono">{link.label}</span>
 					{link.handle}
 				</a>
 			</li>

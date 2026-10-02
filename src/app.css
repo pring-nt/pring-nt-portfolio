@@ -35,15 +35,15 @@
  */
 :root:not([data-theme]),
 [data-theme^='pring'] {
-	--font-body: ui-sans-serif, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	--font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
 	--font-heading: var(--font-body);
-	--font-code: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+	--font-code: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
 }
 
 [data-theme^='natalie'] {
-	--font-body: ui-rounded, 'Nunito', 'Quicksand', 'Segoe UI', system-ui, sans-serif;
+	--font-body: 'Nunito Variable', 'Nunito', ui-rounded, system-ui, sans-serif;
 	--font-heading: Georgia, 'Times New Roman', serif;
-	--font-code: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+	--font-code: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
 }
 
 :root:not([data-theme]),
@@ -131,5 +131,19 @@
 		--grid: color-mix(in srgb, var(--line) 65%, transparent);
 		background-size: 24px 24px;
 		background-position: -1px -1px;
+	}
+}
+
+@layer base {
+	[data-theme^='natalie'] body {
+		--gingham: color-mix(in srgb, var(--accent) 13%, transparent);
+		background-image:
+			linear-gradient(90deg, var(--gingham) 50%, transparent 50%),
+			linear-gradient(var(--gingham) 50%, transparent 50%);
+		background-size: 28px 28px;
+	}
+
+	[data-theme='natalie-dark'] body {
+		--gingham: color-mix(in srgb, var(--accent) 6%, transparent);
 	}
 }

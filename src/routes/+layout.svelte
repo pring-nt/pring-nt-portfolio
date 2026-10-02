@@ -1,4 +1,8 @@
 <script lang="ts">
+	import '@fontsource/ibm-plex-sans/latin-400.css';
+	import '@fontsource/ibm-plex-sans/latin-600.css';
+	import '@fontsource/ibm-plex-mono/latin-400.css';
+	import '@fontsource-variable/nunito/wght.css';
 	import '../app.css';
 	import { onMount } from 'svelte';
 	import favicon from '#lib/assets/favicon.svg';
@@ -15,10 +19,12 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<div class="mx-auto flex min-h-dvh max-w-2xl flex-col gap-12 px-4 py-10 sm:px-6 sm:py-14">
+<div class="flex min-h-dvh flex-col">
 	<SiteHeader />
-	<main class="flex-1">
-		{@render children()}
-	</main>
-	<SiteFooter />
+	<div class="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-14 px-4 py-10 sm:px-6 sm:py-12">
+		<main class="flex-1">
+			{@render children()}
+		</main>
+		<SiteFooter />
+	</div>
 </div>
