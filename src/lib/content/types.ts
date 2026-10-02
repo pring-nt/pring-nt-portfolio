@@ -39,8 +39,21 @@ export type Artwork = {
 
 export type Experience = {
 	name: string;
-	role?: string;
+	role: string;
+	kind: 'work' | 'hackathon' | 'course' | 'organization';
+	/** Free text as it should read, e.g. `May 2026` or `Jul 2026 – present`. */
 	period?: string;
-	summary?: string;
+	context?: string;
+	stack?: string[];
+	highlights: string[];
 	href?: string;
 };
+
+export type Education = {
+	school: string;
+	degree: string;
+	expected: string;
+	notes: string[];
+};
+
+export type SkillGroup = { label: string; items: string[] };

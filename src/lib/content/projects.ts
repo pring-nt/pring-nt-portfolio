@@ -8,7 +8,7 @@ export const projects: Project[] = [
 		role: 'built',
 		repo: 'https://github.com/pring-nt/nockr',
 		site: 'https://nockr.nockr-app.workers.dev/',
-		tags: ['svelte'],
+		tags: ['sveltekit', 'typescript', 'tailwind', 'zod'],
 		issue: {
 			number: 3,
 			title: 'every GPA calculator is annoying',
@@ -27,21 +27,22 @@ export const projects: Project[] = [
 		issue: { number: 7, title: 'sniping GE slots by hand' }
 	},
 	{
-		slug: 'slottle',
-		name: 'Slottle',
-		summary: 'Testing and issue tracking. Reached 1,000+ downloads.',
-		role: 'qa',
-		tags: ['qa']
-	},
-	{
 		slug: 'fb-graphql-interceptor',
 		name: 'fb-graphql-interceptor',
 		summary:
-			"Pulls reactions, comments, shares, titles and dates from Facebook posts and Reels. The normal way didn't work, so I went around it.",
+			"Gets exact reaction, comment and share counts from Facebook posts and Reels. The page only shows rounded numbers, so I read the GraphQL responses instead. The normal way didn't work, so I went around it.",
 		role: 'built',
 		repo: 'https://github.com/pring-nt/fb-graphql-interceptor',
-		tags: ['python', 'graphql'],
-		hidden: true
+		tags: ['python', 'playwright', 'asyncio']
+	},
+	{
+		slug: 'slottle',
+		name: 'Slottle',
+		summary:
+			'Browser extension that builds conflict-free DLSU schedules. I did QA: testing against acceptance criteria and tracking issues. Reached 1,000+ downloads on Chrome and Firefox.',
+		role: 'qa',
+		site: 'https://animo.li/slottle',
+		tags: ['react', 'typescript', 'webextensions']
 	}
 ];
 

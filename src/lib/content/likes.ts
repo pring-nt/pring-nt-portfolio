@@ -5,4 +5,5 @@ export const likes: Like[] = [
 	{ title: 'Frieren', kind: 'anime' }
 ];
 
-export const likesFootnote: string | undefined = 'YuriBetterThanYaoi';
+/** Joke footnote. Shown on Natalie's side only. */
+export const natalieFootnote = 'YuriBetterThanYaoi';

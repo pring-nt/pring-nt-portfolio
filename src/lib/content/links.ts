@@ -9,6 +9,12 @@ export const links: Link[] = [
 	},
 	{ kind: 'github', label: 'GitHub', handle: 'pring-nt', href: 'https://github.com/pring-nt' },
 	{
+		kind: 'linkedin',
+		label: 'LinkedIn',
+		handle: 'nathan-trinidad',
+		href: 'https://www.linkedin.com/in/nathan-trinidad-1a4a53381/'
+	},
+	{
 		kind: 'instagram',
 		label: 'Instagram',
 		handle: '_nate.pringles',
