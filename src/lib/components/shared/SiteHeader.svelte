@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { Heart } from '@lucide/svelte';
+	import cursor from '#lib/assets/pring/cursor.webp';
+	import curvedArrow from '#lib/assets/pring/curved_arrow.webp';
+	import Doodle from '#lib/components/pring/Doodle.svelte';
 	import { profile } from '#lib/content/index.ts';
 	import { themeState } from '#lib/state/theme.svelte.ts';
 	import ColorModeToggle from './ColorModeToggle.svelte';
@@ -9,13 +12,22 @@
 	<div class="mx-auto flex h-16 max-w-2xl items-center justify-between gap-4 px-4 sm:px-6">
 		<button
 			type="button"
-			class="rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+			class="relative rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
 			onclick={() => themeState.togglePersona()}
 		>
 			<span class="flex items-baseline gap-2 natalie:hidden">
 				<span class="sr-only">Switch to {profile.natalie.name}. Currently </span>
 				<span class="text-xl font-semibold tracking-tight">{profile.pring.name}</span>
 				<span class="font-mono text-xs text-muted">pring-nt</span>
+				<Doodle
+					src={curvedArrow}
+					class="absolute top-1/2 right-full mr-3 hidden h-9 w-18 -translate-y-1/2 text-muted lg:block"
+				/>
+				<img
+					src={cursor}
+					alt=""
+					class="pointer-events-none absolute top-5 -right-6 w-5 rotate-[-6deg] select-none dark:invert"
+				/>
 			</span>
 			<span class="hidden items-center gap-1.5 natalie:flex">
 				<span class="sr-only">Switch to {profile.pring.name}. Currently </span>
