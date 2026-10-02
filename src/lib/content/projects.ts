@@ -42,7 +42,7 @@ export const projects: Project[] = [
 			body: 'The exact counts exist, just not on the page. Pulled them from the GraphQL responses instead.'
 		},
 		natalie:
-			'facebook rounds off all the numbers and i wanted the exact ones, so i went and grabbed them from behind the scenes. totes sneaky 😏'
+			'facebook rounds off all the numbers and i wanted the exact ones, so i went and grabbed them from behind the scenes. totes sneaky (¬‿¬)'
 	},
 	{
 		slug: 'slottle',
