@@ -2,6 +2,9 @@
 	import { onMount } from 'svelte';
 	import ColorModeToggle from '#lib/components/shared/ColorModeToggle.svelte';
 	import { themeState } from '#lib/state/theme.svelte.ts';
+	import { visibleProjects } from '#lib/content/index.ts';
+
+	const sample = visibleProjects[0];
 
 	const tokens = [
 		'bg',
@@ -115,12 +118,14 @@
 	</section>
 
 	<section class="space-y-4 rounded-lg border border-line bg-surface p-6">
-		<p class="font-mono text-xs text-accent">#03 · closed by <code>nockr</code></p>
-		<h2 class="font-display text-2xl font-semibold">every GPA calculator is annoying</h2>
+		<p class="font-mono text-xs text-accent">
+			#{String(sample.issue?.number).padStart(2, '0')} · closed by <code>{sample.slug}</code>
+		</p>
+		<h2 class="font-display text-2xl font-semibold">{sample.issue?.title}</h2>
 		<p>
-			Couldn't plan future terms, didn't know DLSU's grading. Made my own. Here's
-			<a href="#top" class="text-link underline underline-offset-2">a link</a>
-			and some <span class="text-muted">muted text</span>.
+			{themeState.persona === 'natalie' ? sample.natalie : sample.issue?.body}
+			<a href={sample.site} class="text-link underline underline-offset-2">{sample.name}</a>
+			<span class="text-muted">· {sample.tags.join(', ')}</span>
 		</p>
 		<p class="inline-block rounded bg-accent-soft px-2 py-1 text-sm">accent-soft highlight</p>
 	</section>

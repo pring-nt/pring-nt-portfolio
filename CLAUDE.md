@@ -57,7 +57,7 @@ static/                    # only files needing exact paths (favicon, robots.txt
 
 - Everything reusable lives in `src/lib/`. Components are grouped by persona (`pring/`, `natalie/`) plus `shared/`.
 - **Every route is prerendered.** No server-only code, no `+page.server.ts`.
-- **Content lives only in `#lib/content/`** as typed TypeScript (optionally Zod-validated). Both `PringLayout` and `NatalieLayout` read from the same files; never hardcode content in layout components.
+- **Content lives only in `#lib/content/`** as typed TypeScript (types in `types.ts`, re-exported from `#lib/content/index.ts`). Both `PringLayout` and `NatalieLayout` read from the same files; never hardcode content in layout components. Per-persona copy lives on the item (e.g. `Project.issue` for Pring, `Project.natalie` for Natalie, which falls back to `summary`). Use `visibleProjects`, which skips projects marked `hidden`.
 - Shared state (persona, color mode) lives in `*.svelte.ts` files under `#lib/state/`.
 - Art entries in `art.ts`: image import, alt text, optional date, Instagram post URL. Source drawings are WebP, ~1200px on the long side.
 
