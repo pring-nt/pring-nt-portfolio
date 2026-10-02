@@ -147,3 +147,9 @@
 		--gingham: color-mix(in srgb, var(--accent) 6%, transparent);
 	}
 }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}

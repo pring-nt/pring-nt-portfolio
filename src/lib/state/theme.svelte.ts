@@ -1,3 +1,5 @@
+import { flushSync } from 'svelte';
+
 export type Persona = 'pring' | 'natalie';
 export type ColorMode = 'system' | 'light' | 'dark';
 export type Theme = `${Persona}-${'light' | 'dark'}`;
@@ -65,8 +67,43 @@ class ThemeState {
 		write(PERSONA_KEY, persona);
 	}
 
-	togglePersona() {
-		this.setPersona(this.persona === 'pring' ? 'natalie' : 'pring');
+	/**
+	 * Switches persona with a circular reveal growing from `from` (usually the clicked element).
+	 * Falls back to an instant switch without View Transitions or with reduced motion.
+	 */
+	async togglePersona(from?: Element) {
+		const next = this.persona === 'pring' ? 'natalie' : 'pring';
+		const apply = () => {
+			this.setPersona(next);
+			document.documentElement.dataset.theme = this.theme;
+			flushSync();
+			scrollTo({ top: 0, behavior: 'instant' });
+		};
+
+		if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			apply();
+			return;
+		}
+
+		const rect = from?.getBoundingClientRect();
+		const x = rect ? rect.left + rect.width / 2 : innerWidth / 2;
+		const y = rect ? rect.top + rect.height / 2 : 0;
+		const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+
+		const transition = document.startViewTransition(apply);
+		try {
+			await transition.ready;
+		} catch {
+			return;
+		}
+		document.documentElement.animate(
+			{ clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+			{
+				duration: 600,
+				easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+				pseudoElement: '::view-transition-new(root)'
+			}
+		);
 	}
 
 	setMode(mode: ColorMode) {
