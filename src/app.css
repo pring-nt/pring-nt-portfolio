@@ -33,7 +33,7 @@
 
 [data-theme^='natalie'] {
 	--font-body: ui-rounded, 'Nunito', 'Quicksand', 'Segoe UI', system-ui, sans-serif;
-	--font-heading: ui-serif, 'Fraunces', Georgia, 'Times New Roman', serif;
+	--font-heading: Georgia, 'Times New Roman', serif;
 	--font-code: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
 }
 
