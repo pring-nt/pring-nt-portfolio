@@ -26,4 +26,7 @@ export const likes: Like[] = [
 ];
 
 /** Joke footnote. Shown on Natalie's side only. */
-export const natalieFootnote = 'YuriBetterThanYaoi';
+export const natalieFootnote = {
+	text: 'YuriBetterThanYaoi',
+	href: 'https://github.com/AmaneKai/YuriBetterThanYaoi'
+};

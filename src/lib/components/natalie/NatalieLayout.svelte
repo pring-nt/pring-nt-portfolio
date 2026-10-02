@@ -79,5 +79,9 @@
 		</ul>
 	</section>
 
-	<p class="text-sm text-muted"><span aria-hidden="true">* </span>{natalieFootnote}</p>
+	<p class="text-sm text-muted">
+		<span aria-hidden="true">* </span><a class="text-link underline" href={natalieFootnote.href}
+			>{natalieFootnote.text}</a
+		>
+	</p>
 </div>
