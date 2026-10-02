@@ -75,5 +75,4 @@ export const skills: SkillGroup[] = [
 	{ label: 'Tools', items: ['Git', 'GitHub', 'Vite', 'Bun', 'Playwright', 'MySQL', 'Zod'] }
 ];
 
-/** Set once a PDF of the CV is in static/ (e.g. `/cv.pdf`). */
-export const cvHref: string | undefined = undefined;
+export const cvHref = '/trinidad_cv.pdf';
