@@ -1,8 +1,12 @@
 <script lang="ts">
-	import './layout.css';
+	import '../app.css';
+	import { onMount } from 'svelte';
 	import favicon from '#lib/assets/favicon.svg';
+	import { themeState } from '#lib/state/theme.svelte.ts';
 
 	let { children } = $props();
+
+	onMount(() => themeState.start());
 </script>
 
 <svelte:head>
