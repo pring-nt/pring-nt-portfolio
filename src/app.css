@@ -32,86 +32,51 @@
 /*
  * :root:not([data-theme]) only applies when the inline script in app.html didn't run (no JS),
  * so the site still follows the system color scheme as Pring.
+ * Colors are light-dark(light, dark) pairs, resolved by each theme's color-scheme.
  */
+:root:not([data-theme]) {
+	color-scheme: light dark;
+}
+
+[data-theme$='-light'] {
+	color-scheme: light;
+}
+
+[data-theme$='-dark'] {
+	color-scheme: dark;
+}
+
+:root {
+	--font-code: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+}
+
 :root:not([data-theme]),
 [data-theme^='pring'] {
 	--font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
 	--font-heading: var(--font-body);
-	--font-code: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+	--bg: light-dark(#f4f2ec, #1c1f24);
+	--surface: light-dark(#fbfaf6, #23272d);
+	--ink: light-dark(#2a2d33, #e4e2dc);
+	--muted: light-dark(#6b6e75, #9a9da4);
+	--line: light-dark(#e3e0d8, #2a2e35);
+	--accent: light-dark(#4f6fa3, #93afd6);
+	--accent-soft: light-dark(#c9d7ea, #2e3a57);
+	--link: var(--accent);
+	--pop: var(--accent);
 }
 
 [data-theme^='natalie'] {
 	--font-body: 'Nunito Variable', 'Nunito', ui-rounded, system-ui, sans-serif;
 	--font-heading: Georgia, 'Times New Roman', serif;
-	--font-code: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
-}
-
-:root:not([data-theme]),
-[data-theme='pring-light'] {
-	color-scheme: light;
-	--bg: #f4f2ec;
-	--surface: #fbfaf6;
-	--ink: #2a2d33;
-	--muted: #6b6e75;
-	--line: #e3e0d8;
-	--accent: #4f6fa3;
-	--accent-soft: #c9d7ea;
-	--link: #4f6fa3;
-	--pop: #4f6fa3;
-}
-
-[data-theme='pring-dark'] {
-	color-scheme: dark;
-	--bg: #1c1f24;
-	--surface: #23272d;
-	--ink: #e4e2dc;
-	--muted: #9a9da4;
-	--line: #2a2e35;
-	--accent: #93afd6;
-	--accent-soft: #2e3a57;
-	--link: #93afd6;
-	--pop: #93afd6;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme]) {
-		color-scheme: dark;
-		--bg: #1c1f24;
-		--surface: #23272d;
-		--ink: #e4e2dc;
-		--muted: #9a9da4;
-		--line: #2a2e35;
-		--accent: #93afd6;
-		--accent-soft: #2e3a57;
-		--link: #93afd6;
-		--pop: #93afd6;
-	}
-}
-
-[data-theme='natalie-light'] {
-	color-scheme: light;
-	--bg: #fbf4ef;
-	--surface: #f7d6de;
-	--ink: #2e3a57;
-	--muted: #5f6680;
-	--line: #f2cfd8;
-	--accent: #e8949f;
-	--accent-soft: #f2cfae;
-	--link: #b02833;
-	--pop: #c8323e;
-}
-
-[data-theme='natalie-dark'] {
-	color-scheme: dark;
-	--bg: #1f2640;
-	--surface: #2e3a57;
-	--ink: #f3eee8;
-	--muted: #bcb6c8;
-	--line: #2b3452;
-	--accent: #f0a8b4;
-	--accent-soft: #e9c4a2;
-	--link: #f0a8b4;
-	--pop: #e0525c;
+	--bg: light-dark(#fbf4ef, #1f2640);
+	--surface: light-dark(#f7d6de, #2e3a57);
+	--ink: light-dark(#2e3a57, #f3eee8);
+	--muted: light-dark(#5f6680, #bcb6c8);
+	--line: light-dark(#f2cfd8, #2b3452);
+	--accent: light-dark(#e8949f, #f0a8b4);
+	--accent-soft: light-dark(#f2cfae, #e9c4a2);
+	--link: light-dark(#b02833, #f0a8b4);
+	--pop: light-dark(#c8323e, #e0525c);
 }
 
 @layer base {
@@ -127,7 +92,7 @@
 	html {
 		background-color: var(--bg);
 		color: var(--ink);
-		font-family: var(--font-body);
+		font-family: var(--font-body), sans-serif;
 		scrollbar-width: thin;
 		scrollbar-color: var(--scrollbar) transparent;
 	}
@@ -212,6 +177,6 @@
 	--scallop: 14px;
 	mask:
 		linear-gradient(#000 0 0) left / calc(100% - var(--scallop)) 100% no-repeat,
-		radial-gradient(circle var(--scallop) at 0 50%, #000 calc(100% - 0.5px), #0000) right /
+		radial-gradient(circle var(--scallop) at 0 50%, #000 calc(100% - 1px), #0000) right /
 			var(--scallop) calc(var(--scallop) * 2) repeat-y;
 }
