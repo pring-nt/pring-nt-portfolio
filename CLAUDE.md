@@ -49,7 +49,7 @@ src/
 │  ├─ components/{pring,natalie,shared}/
 │  ├─ content/             # projects.ts, art.ts, currently.ts, ...
 │  ├─ state/               # *.svelte.ts runes state: persona + color mode
-│  └─ assets/art/          # drawings, rendered via @sveltejs/enhanced-img
+│  └─ assets/              # pring/ doodles; natalie/art/ drawings (enhanced-img)
 ├─ app.html                # inline no-flash theme script
 └─ app.css                 # Tailwind entry + theme CSS variables
 static/                    # only files needing exact paths (favicon, robots.txt)
