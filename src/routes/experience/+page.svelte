@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ArrowUpRight, FileText } from '@lucide/svelte';
 	import ExternalLink from '#lib/components/shared/ExternalLink.svelte';
+	import PageMeta from '#lib/components/shared/PageMeta.svelte';
 	import SectionHeading from '#lib/components/shared/SectionHeading.svelte';
 	import { cvHref, education, experience, resume, skills } from '#lib/content/index.ts';
 
@@ -8,13 +9,11 @@
 	const organizations = experience.filter((entry) => entry.kind === 'organization');
 </script>
 
-<svelte:head>
-	<title>Experience · Pring</title>
-	<meta
-		name="description"
-		content="Experience, education and skills of {resume.name} (pring-nt)."
-	/>
-</svelte:head>
+<PageMeta
+	page="Experience"
+	path="/experience"
+	description="Experience, education and skills of {resume.name} (pring-nt), a Software Technology student at DLSU."
+/>
 
 <div class="space-y-12">
 	<header class="flex flex-wrap items-end justify-between gap-4">

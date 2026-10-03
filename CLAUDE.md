@@ -23,6 +23,7 @@ bun run preview
 bun run check        # svelte-kit sync + svelte-check (type checking)
 bun run lint         # prettier --check . && eslint .
 bun run format       # prettier --write .
+bun run og           # regenerate static/og.png (link preview) with satori
 ```
 
 No test runner is configured.
@@ -59,6 +60,7 @@ static/                    # only files needing exact paths (favicon, robots.txt
 
 - Everything reusable lives in `src/lib/`. Components are grouped by persona (`pring/`, `natalie/`) plus `shared/`.
 - Links to other sites use `shared/ExternalLink.svelte`, which opens http(s) links in a new tab (with `rel="noopener noreferrer"` and a screen-reader hint) and leaves `mailto:` alone.
+- Each page sets its title, description and link-preview tags with `shared/PageMeta.svelte`. The tab title follows the persona; crawlers see Pring. Absolute URLs come from `siteUrl` in `#lib/content/site.ts`. Rerun `bun run og` after changing Pring's intro, the portrait doodle or the pring-dark palette.
 - **Every route is prerendered.** No server-only code, no `+page.server.ts`.
 - **Content lives only in `#lib/content/`** as typed TypeScript (types in `types.ts`, re-exported from `#lib/content/index.ts`). Both `PringLayout` and `NatalieLayout` read from the same files; never hardcode content in layout components. Per-persona copy lives on the item (e.g. `Project.issue` for Pring, `Project.natalie` for Natalie, which falls back to `summary`). Use `visibleProjects`, which skips projects marked `hidden`.
 - Shared state (persona, color mode) lives in `*.svelte.ts` files under `#lib/state/`.
