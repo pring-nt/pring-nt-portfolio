@@ -29,11 +29,7 @@
 					src={curvedArrow}
 					class="absolute top-1/2 right-full mr-3 hidden h-9 w-18 -translate-y-1/2 text-muted lg:block"
 				/>
-				<img
-					src={cursor}
-					alt=""
-					class="pointer-events-none absolute top-5 -right-6 w-5 rotate-[-6deg] select-none dark:invert"
-				/>
+				<Doodle src={cursor} class="absolute top-5 -right-6 size-5 rotate-[-6deg] text-muted" />
 			</span>
 			<span class="hidden items-center gap-1.5 natalie:flex">
 				<span class="sr-only">Switch to {profile.pring.name}. Currently </span>
