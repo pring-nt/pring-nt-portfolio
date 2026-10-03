@@ -180,3 +180,30 @@
 		radial-gradient(circle var(--scallop) at 0 50%, #000 calc(100% - 1px), #0000) right /
 			var(--scallop) calc(var(--scallop) * 2) repeat-y;
 }
+
+/* Page navigation: the header holds still while the content fades and slides. */
+[data-nav-transition] [data-site-header] {
+	view-transition-name: site-header;
+}
+
+[data-nav-transition]::view-transition-old(root) {
+	animation: nav-out 150ms ease-in both;
+}
+
+[data-nav-transition]::view-transition-new(root) {
+	animation: nav-in 260ms 60ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+@keyframes nav-out {
+	to {
+		opacity: 0;
+		translate: 0 -6px;
+	}
+}
+
+@keyframes nav-in {
+	from {
+		opacity: 0;
+		translate: 0 10px;
+	}
+}

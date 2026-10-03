@@ -14,7 +14,7 @@
 	];
 </script>
 
-<header class="sticky top-0 z-10 border-b border-line bg-bg">
+<header data-site-header class="sticky top-0 z-10 border-b border-line bg-bg">
 	<div class="mx-auto flex h-16 max-w-2xl items-center justify-between gap-4 px-4 sm:px-6">
 		<button
 			type="button"

@@ -5,6 +5,7 @@
 	import '@fontsource-variable/nunito/wght.css';
 	import '../app.css';
 	import { onMount } from 'svelte';
+	import { onNavigate } from '$app/navigation';
 	import favicon from '#lib/assets/favicon.svg';
 	import SiteFooter from '#lib/components/shared/SiteFooter.svelte';
 	import SiteHeader from '#lib/components/shared/SiteHeader.svelte';
@@ -13,6 +14,23 @@
 	let { children } = $props();
 
 	onMount(() => themeState.start());
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			return;
+		}
+		if (navigation.from?.url.pathname === navigation.to?.url.pathname) return;
+
+		const root = document.documentElement;
+		return new Promise((resolve) => {
+			root.dataset.navTransition = '';
+			const transition = document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+			transition.finished.finally(() => delete root.dataset.navTransition);
+		});
+	});
 </script>
 
 <svelte:head>
