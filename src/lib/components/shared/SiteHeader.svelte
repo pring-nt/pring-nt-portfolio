@@ -21,9 +21,11 @@
 			class="group relative rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
 			onclick={() => themeState.togglePersona()}
 		>
-			<span class="flex items-baseline gap-2 natalie:hidden">
+			<span data-persona="pring" class="flex items-baseline gap-2 natalie:hidden">
 				<span class="sr-only">Switch to {profile.natalie.name}. Currently </span>
-				<span class="text-xl font-semibold tracking-tight">{profile.pring.name}</span>
+				<span data-intro="name" class="text-xl font-semibold tracking-tight"
+					>{profile.pring.name}</span
+				>
 				<span class="font-mono text-xs text-muted">pring-nt</span>
 				<Doodle
 					src={curvedArrow}
@@ -31,10 +33,11 @@
 				/>
 				<Doodle src={cursor} class="absolute top-5 -right-6 size-5 rotate-[-6deg] text-muted" />
 			</span>
-			<span class="hidden items-center gap-1.5 natalie:flex">
+			<span data-persona="natalie" class="hidden items-center gap-1.5 natalie:flex">
 				<span class="sr-only">Switch to {profile.pring.name}. Currently </span>
-				<span class="font-display text-2xl">{profile.natalie.name}</span>
+				<span data-intro="name" class="font-display text-2xl">{profile.natalie.name}</span>
 				<Heart
+					data-intro="burst"
 					class="size-3.5 fill-pop text-pop transition-[scale,rotate] duration-200 motion-safe:group-hover:scale-125 motion-safe:group-hover:rotate-12"
 					aria-hidden="true"
 				/>
