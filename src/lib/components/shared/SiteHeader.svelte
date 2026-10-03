@@ -31,9 +31,12 @@
 				<span class="font-mono text-xs text-muted">pring-nt</span>
 				<Doodle
 					src={curvedArrow}
-					class="absolute top-1/2 right-full mr-3 hidden h-9 w-18 -translate-y-1/2 text-muted lg:block"
+					class="absolute top-1/2 right-full mr-3 hidden h-9 w-18 -translate-y-1/2 text-muted transition-[translate] duration-300 ease-out motion-safe:group-hover:translate-x-1.5 motion-safe:group-focus-visible:translate-x-1.5 lg:block"
 				/>
-				<Doodle src={cursor} class="absolute top-5 -right-6 size-5 rotate-[-6deg] text-muted" />
+				<Doodle
+					src={cursor}
+					class="absolute top-5 -right-6 size-5 rotate-[-6deg] text-muted transition-[translate] duration-300 ease-out motion-safe:group-hover:-translate-x-3 motion-safe:group-hover:-translate-y-2 motion-safe:group-hover:animate-[doodle-click_220ms_300ms_ease-in-out] motion-safe:group-focus-visible:-translate-x-3 motion-safe:group-focus-visible:-translate-y-2"
+				/>
 			</span>
 			<span data-persona="natalie" class="hidden items-center gap-1.5 natalie:flex">
 				<span class="sr-only">Switch to {profile.pring.name}. Currently </span>

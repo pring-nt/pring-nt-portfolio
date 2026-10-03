@@ -202,6 +202,32 @@
 	}
 }
 
+/* Pring's doodles: the header cursor taps the name, the portrait line-boils on hover. */
+@keyframes doodle-click {
+	50% {
+		scale: 0.8;
+	}
+}
+
+@keyframes doodle-boil {
+	0% {
+		translate: 0 0;
+		rotate: 0deg;
+	}
+	25% {
+		translate: 0.5px -0.5px;
+		rotate: -1.2deg;
+	}
+	50% {
+		translate: -0.5px 0.5px;
+		rotate: 0.8deg;
+	}
+	75% {
+		translate: 0.5px 0.5px;
+		rotate: -0.4deg;
+	}
+}
+
 /* Page navigation: the header holds still while the content fades and slides. */
 [data-nav-transition] [data-site-header] {
 	view-transition-name: site-header;
