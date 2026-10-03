@@ -202,3 +202,16 @@
 	animation: none;
 	mix-blend-mode: normal;
 }
+
+::view-transition-old(root) {
+	z-index: 1;
+	backface-visibility: hidden;
+}
+
+[data-page-turn='natalie']::view-transition-old(root) {
+	--scallop: 14px;
+	mask:
+		linear-gradient(#000 0 0) left / calc(100% - var(--scallop)) 100% no-repeat,
+		radial-gradient(circle var(--scallop) at 0 50%, #000 calc(100% - 0.5px), #0000) right /
+			var(--scallop) calc(var(--scallop) * 2) repeat-y;
+}

@@ -18,7 +18,7 @@
 	<button
 		type="button"
 		class="rounded-sm text-left text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-		onclick={(event) => themeState.togglePersona(event.currentTarget)}
+		onclick={() => themeState.togglePersona()}
 	>
 		<span class="natalie:hidden">{profile.pring.switchHint}</span>
 		<span class="hidden natalie:inline">{profile.natalie.switchHint}</span>

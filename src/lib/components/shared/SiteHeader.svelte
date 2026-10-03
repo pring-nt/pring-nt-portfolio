@@ -19,7 +19,7 @@
 		<button
 			type="button"
 			class="group relative rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-			onclick={(event) => themeState.togglePersona(event.currentTarget)}
+			onclick={() => themeState.togglePersona()}
 		>
 			<span class="flex items-baseline gap-2 natalie:hidden">
 				<span class="sr-only">Switch to {profile.natalie.name}. Currently </span>
