@@ -1,20 +1,14 @@
 <script lang="ts">
-	import { ArrowUpRight, Heart } from '@lucide/svelte';
+	import { ArrowUpRight } from '@lucide/svelte';
 	import { dev } from '$app/env';
 	import { art, likes, natalieFootnote, profile, visibleProjects } from '#lib/content/index.ts';
 	import ArtGallery from './ArtGallery.svelte';
+	import NatalieHeading from './NatalieHeading.svelte';
 	import ScrapCard from './ScrapCard.svelte';
 
 	const tilts = [-1, 0.75, -0.5, 1];
 	const tapes = ['center', 'left', 'right', 'center'] as const;
 </script>
-
-{#snippet heading(id: string, text: string, footnoteMark = false)}
-	<h2 {id} class="flex items-center gap-2 font-display text-2xl">
-		<Heart class="size-4 fill-accent text-accent" aria-hidden="true" />
-		{text}{#if footnoteMark}<sup class="text-sm text-muted">*</sup>{/if}
-	</h2>
-{/snippet}
 
 <div class="space-y-14">
 	<section aria-label="About">
@@ -25,13 +19,13 @@
 
 	{#if art.length > 0 || dev}
 		<section aria-labelledby="natalie-art" class="space-y-5">
-			{@render heading('natalie-art', 'stuff i drew')}
+			<NatalieHeading id="natalie-art" text="stuff i drew" />
 			<ArtGallery {art} />
 		</section>
 	{/if}
 
 	<section aria-labelledby="natalie-likes" class="space-y-6">
-		{@render heading('natalie-likes', "things i'm obsessed with", true)}
+		<NatalieHeading id="natalie-likes" text="things i'm obsessed with" footnoteMark />
 		<ul class="grid gap-6 sm:grid-cols-2">
 			{#each likes as like, i (like.title)}
 				<li>
@@ -47,7 +41,7 @@
 	</section>
 
 	<section aria-labelledby="natalie-projects" class="space-y-6">
-		{@render heading('natalie-projects', 'things i made (or broke)')}
+		<NatalieHeading id="natalie-projects" text="things i made (or broke)" />
 		<ul class="grid gap-7 sm:grid-cols-2">
 			{#each visibleProjects as project, i (project.slug)}
 				<li>

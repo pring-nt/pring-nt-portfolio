@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ArrowUpRight, FileText } from '@lucide/svelte';
+	import SectionHeading from '#lib/components/shared/SectionHeading.svelte';
 	import { cvHref, education, experience, resume, skills } from '#lib/content/index.ts';
 
 	const work = experience.filter((entry) => entry.kind !== 'organization');
@@ -13,12 +14,6 @@
 		content="Experience, education and skills of {resume.name} (pring-nt)."
 	/>
 </svelte:head>
-
-{#snippet sectionHeading(id: string, text: string)}
-	<h2 {id} class="text-sm text-muted pring:font-mono natalie:font-display natalie:text-xl">
-		{text}
-	</h2>
-{/snippet}
 
 <div class="space-y-12">
 	<header class="flex flex-wrap items-end justify-between gap-4">
@@ -36,7 +31,7 @@
 	</header>
 
 	<section aria-labelledby="exp-education" class="space-y-3">
-		{@render sectionHeading('exp-education', 'education')}
+		<SectionHeading id="exp-education" text="education" />
 		<div class="rounded-md border border-line bg-surface p-4 sm:p-5">
 			<h3 class="font-semibold">{education.school}</h3>
 			<p class="text-sm text-muted">{education.degree} · Expected {education.expected}</p>
@@ -45,7 +40,7 @@
 	</section>
 
 	<section aria-labelledby="exp-work" class="space-y-3">
-		{@render sectionHeading('exp-work', 'engineering experience')}
+		<SectionHeading id="exp-work" text="engineering experience" />
 		<ol class="divide-y divide-line rounded-md border border-line bg-surface">
 			{#each work as entry (entry.name)}
 				<li class="space-y-2 p-4 sm:p-5">
@@ -77,7 +72,7 @@
 	</section>
 
 	<section aria-labelledby="exp-skills" class="space-y-3">
-		{@render sectionHeading('exp-skills', 'skills')}
+		<SectionHeading id="exp-skills" text="skills" />
 		<dl
 			class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 rounded-md border border-line bg-surface p-4 text-[0.95rem] sm:p-5"
 		>
@@ -89,7 +84,7 @@
 	</section>
 
 	<section aria-labelledby="exp-orgs" class="space-y-3">
-		{@render sectionHeading('exp-orgs', 'organizations')}
+		<SectionHeading id="exp-orgs" text="organizations" />
 		<ul class="divide-y divide-line rounded-md border border-line bg-surface">
 			{#each organizations as entry (entry.name)}
 				<li class="p-4 sm:p-5">
