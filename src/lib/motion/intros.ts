@@ -14,24 +14,49 @@ type Intro = (find: (kind: string) => HTMLElement[], previousName: string) => ()
 const heartPath =
 	'M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.2 5 6.6 5c2 0 3.6 1.1 5.4 3 1.8-1.9 3.4-3 5.4-3 3.4 0 5.4 3.6 4.1 6.8C19.5 16.4 12 21 12 21z';
 
+/** Stop functions for in-flight name scrambles, so a quick second switch can't leave a name half-swapped. */
+const nameScrambles = new Map<HTMLElement, () => void>();
+
 /**
  * Scrambles the header name from the previous persona's name into this one's, starting once the
  * page turn has uncovered the header. A timeout rather than `delay`, since scrambleText already
- * scrambles during its delay and the old name should hold still until then.
+ * scrambles during its delay and the old name should hold still until then. The width glides from
+ * the old name to the new one so the random glyph widths don't jitter whatever sits next to it.
  */
 function swapName(find: (kind: string) => HTMLElement[], previousName: string, start: number) {
 	const [name] = find('name');
 	if (!name) return () => {};
-	const text = name.textContent ?? '';
+	const text = name.dataset.name ?? '';
 	name.textContent = previousName;
-	return () =>
-		setTimeout(
-			() =>
-				animate(name, {
-					innerHTML: scrambleText({ text, chars: 'a-z', revealRate: 9, settleDuration: 550 })
-				}),
-			start
-		);
+
+	const play = () => {
+		const from = name.getBoundingClientRect().width;
+		name.textContent = text;
+		const to = name.getBoundingClientRect().width;
+		name.textContent = previousName;
+		name.style.whiteSpace = 'nowrap';
+
+		const revealRate = 9;
+		const settleDuration = 550;
+		const duration = (Math.max(text.length, previousName.length) - 1) * (1000 / revealRate);
+		const animation = animate(name, {
+			width: { from, to, duration: duration + settleDuration, ease: 'inOutQuad' },
+			innerHTML: scrambleText({ text, chars: 'a-z', revealRate, settleDuration }),
+			onComplete: () => nameScrambles.get(name)?.()
+		});
+		nameScrambles.set(name, () => finish(animation));
+	};
+	const finish = (animation?: { cancel(): unknown }) => {
+		clearTimeout(timeout);
+		animation?.cancel();
+		name.textContent = text;
+		name.style.removeProperty('width');
+		name.style.removeProperty('white-space');
+		nameScrambles.delete(name);
+	};
+	let timeout: ReturnType<typeof setTimeout>;
+	nameScrambles.set(name, () => finish());
+	return () => (timeout = setTimeout(play, start));
 }
 
 /** Throws a handful of small hearts out of `origin`, then removes them. */
@@ -152,8 +177,9 @@ const inPersona = (persona: Persona, kind: string) => [
 ];
 
 export function prepareIntro(persona: Persona) {
+	for (const stop of [...nameScrambles.values()]) stop();
 	const find = (kind: string) =>
 		inPersona(persona, kind).filter((el) => el.getBoundingClientRect().top < innerHeight);
 	const [previous] = inPersona(persona === 'pring' ? 'natalie' : 'pring', 'name');
-	return intros[persona](find, previous?.textContent ?? '');
+	return intros[persona](find, previous?.dataset.name ?? '');
 }

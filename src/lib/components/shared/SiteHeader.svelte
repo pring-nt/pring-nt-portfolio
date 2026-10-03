@@ -23,8 +23,10 @@
 		>
 			<span data-persona="pring" class="flex items-baseline gap-2 natalie:hidden">
 				<span class="sr-only">Switch to {profile.natalie.name}. Currently </span>
-				<span data-intro="name" class="text-xl font-semibold tracking-tight"
-					>{profile.pring.name}</span
+				<span
+					data-intro="name"
+					data-name={profile.pring.name}
+					class="text-xl font-semibold tracking-tight">{profile.pring.name}</span
 				>
 				<span class="font-mono text-xs text-muted">pring-nt</span>
 				<Doodle
@@ -35,7 +37,9 @@
 			</span>
 			<span data-persona="natalie" class="hidden items-center gap-1.5 natalie:flex">
 				<span class="sr-only">Switch to {profile.pring.name}. Currently </span>
-				<span data-intro="name" class="font-display text-2xl">{profile.natalie.name}</span>
+				<span data-intro="name" data-name={profile.natalie.name} class="font-display text-2xl"
+					>{profile.natalie.name}</span
+				>
 				<Heart
 					data-intro="burst"
 					class="size-3.5 fill-pop text-pop transition-[scale,rotate] duration-200 motion-safe:group-hover:scale-125 motion-safe:group-hover:rotate-12"
