@@ -1,54 +1,78 @@
-# sv
+# pring-nt-portfolio
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+My personal site. It has two sides:
 
-## Creating a project
+- **Pring**: an engineering notebook. Graph paper, plain words, projects written up as closed issues.
+- **Natalie**: a pastel scrapbook. Gingham, taped cards, my drawings first, a lot more kaomoji.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Click the name in the header to flip between them. The choice (and light/dark mode) is remembered per browser.
 
-```sh
-# create a new project
-npx sv create my-app
+![Link preview: Pring's intro on dark graph paper](static/og.png)
+
+## Stack
+
+- [SvelteKit 3](https://svelte.dev/docs/kit) + Svelte 5 (runes) and TypeScript, prerendered with `adapter-static`
+- [Tailwind CSS v4](https://tailwindcss.com), with the four themes as CSS variables in `src/app.css`
+- [anime.js](https://animejs.com) for the persona switch entrances and the draggable polaroids, loaded after startup
+- `@sveltejs/enhanced-img` for drawings and photos, [Fontsource](https://fontsource.org) for self-hosted fonts, [Lucide](https://lucide.dev) icons
+- [bun](https://bun.sh) for everything
+
+## Running it
+
+```bash
+bun install
+bun run dev
 ```
 
-To recreate this project with the same configuration:
+| Command           | What it does                                        |
+| ----------------- | --------------------------------------------------- |
+| `bun run dev`     | Dev server                                          |
+| `bun run build`   | Static build into `build/`                          |
+| `bun run preview` | Serve the build                                     |
+| `bun run check`   | `svelte-kit sync` + `svelte-check`                  |
+| `bun run lint`    | Prettier check + ESLint                             |
+| `bun run format`  | Prettier write                                      |
+| `bun run og`      | Regenerate the link-preview image (`static/og.png`) |
 
-```sh
-# recreate this project
-bun x sv@1.0.1 create --template minimal --types ts --add tailwindcss="plugins:none" sveltekit-adapter="adapter:static" prettier eslint --install bun pring-nt-portfolio
+## Where things live
+
+```
+src/
+├─ routes/                 # home (both personas) and /experience
+├─ lib/
+│  ├─ content/             # all copy and data, typed (projects, likes, art, experience, ...)
+│  ├─ components/          # pring/, natalie/, shared/
+│  ├─ motion/              # anime.js intros and draggable polaroids
+│  ├─ state/               # persona + color mode
+│  └─ assets/              # pring/ doodles, natalie/art drawings, natalie/scrapbook finds
+├─ app.html                # sets the theme before first paint
+└─ app.css                 # themes, backgrounds, page transitions
+scripts/og.ts              # renders static/og.png with satori
 ```
 
-## Adding features
+Both personas render from the same content files, so editing a project or a like in `src/lib/content/` updates both sides.
 
-Add features to your project with `sv add`:
+### Adding a drawing
 
-```sh
-npx sv add
-```
+1. Save it as WebP, about 1200px on the long side, in `src/lib/assets/natalie/art/`.
+2. Add it to `src/lib/content/art.ts` with an `?enhanced` import, alt text and the Instagram post link (and a date if you want one under it).
 
-For example, to add Tailwind CSS:
+### Adding found art
 
-```sh
-npx sv add tailwindcss
-```
+Scrapbook images go in `src/lib/assets/natalie/scrapbook/`. Credit each one: on the page through its `credit` (or `stickerCredits` in `src/lib/content/credits.ts`), and in [CREDITS.md](CREDITS.md).
 
-## Developing
+### Link preview
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+`bun run og` draws Pring's dark-mode intro with the portrait doodle into `static/og.png`, using the real intro text and the site's fonts. Run it again after changing the intro, the doodle or the palette. The absolute URLs in the meta tags come from `siteUrl` in `src/lib/content/site.ts`, so update that when the site gets a custom domain.
 
-```sh
-npm run dev
+## Deploying
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+Cloudflare Pages, connected to this repo:
 
-## Building
+- Build command: `bun run build`
+- Output directory: `build`
+- Environment variable: `BUN_VERSION=1.3.12`
 
-To create a production version of your app:
+## Credits
 
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
+Found art (the favicon, Marin pictures and Natalie's stickers) is listed with its sources in [CREDITS.md](CREDITS.md). The doodles and drawings are mine.
