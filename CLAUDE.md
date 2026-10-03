@@ -71,9 +71,10 @@ static/                    # only files needing exact paths (favicon, robots.txt
 - Text colors: use `ink`, `muted` and `link` for text. Natalie's `accent` (pink) and `pop` (bow red) fail contrast as body text, so they're decoration only.
 - An inline script in `src/app.html` reads `persona` / `color-mode` from localStorage (in try/catch) and sets `data-theme` before first paint. Defaults: Pring, system color mode. `themeState` in [theme.svelte.ts](src/lib/state/theme.svelte.ts) uses the same keys; keep them in sync.
 - `themeState` starts at the defaults so hydration matches the prerendered HTML, then loads the saved choice in `start()` (called once from the root layout). So **never branch markup on `themeState.persona`** for content visible on first paint, or a Natalie visitor sees Pring content flash. Render both persona layouts and hide the inactive one with the `pring:` / `natalie:` variants instead.
-- The persona switch is slightly hidden (current favorite: clicking the name in the header) and is the site's big animation.
+- The persona switch is slightly hidden (current favorite: clicking the name in the header) and is the site's showpiece animation.
 - Fonts are self-hosted via Fontsource and imported in `+layout.svelte`: Pring uses IBM Plex Sans (400/600) + IBM Plex Mono (400), Natalie uses Nunito Variable for body and Georgia for `font-display`. Only import weights actually used.
-- Backgrounds (Pring graph paper, Natalie gingham) live in `app.css` on `body`, keyed by `data-theme`. Natalie's tilted, taped cards are `ScrapCard`. No entrance animations. Pring hovers stay plain (color/underline). Natalie gets small hover effects on interactive bits (wavy pop-red underline and arrow nudge on links via `app.css`, lifting gallery cards, heart bounce on the header name); wrap any movement in `motion-safe:`.
+- Backgrounds (Pring graph paper, Natalie gingham) live in `app.css` on `body`, keyed by `data-theme`. Natalie's tilted, taped cards are `ScrapCard`.
+- Animation: effects are welcome where they add charm (hovers, transitions, the persona switch). Avoid excessive, always-running motion such as animated backgrounds or looping decoration. Pring stays restrained to match its notebook voice; Natalie can be playful. Wrap movement in `motion-safe:` (or a `prefers-reduced-motion` check) so reduced-motion visitors get an instant version.
 - Light pink fails contrast as text. Use it for backgrounds and decoration only; Natalie's links use navy or red.
 
 ## Design constraints
