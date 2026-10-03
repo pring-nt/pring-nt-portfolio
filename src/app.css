@@ -57,9 +57,9 @@
 	--bg: light-dark(#f4f2ec, #1c1f24);
 	--surface: light-dark(#fbfaf6, #23272d);
 	--ink: light-dark(#2a2d33, #e4e2dc);
-	--muted: light-dark(#6b6e75, #9a9da4);
+	--muted: light-dark(#66696f, #9a9da4);
 	--line: light-dark(#e3e0d8, #2a2e35);
-	--accent: light-dark(#4f6fa3, #93afd6);
+	--accent: light-dark(#4b6a9e, #93afd6);
 	--accent-soft: light-dark(#c9d7ea, #2e3a57);
 	--link: var(--accent);
 	--pop: var(--accent);
@@ -71,8 +71,8 @@
 	--bg: light-dark(#fbf4ef, #1f2640);
 	--surface: light-dark(#f7d6de, #2e3a57);
 	--ink: light-dark(#2e3a57, #f3eee8);
-	--muted: light-dark(#5f6680, #bcb6c8);
-	--line: light-dark(#f2cfd8, #2b3452);
+	--muted: light-dark(#555c75, #bcb6c8);
+	--line: light-dark(#ebbdc9, #3b4872);
 	--accent: light-dark(#e8949f, #f0a8b4);
 	--accent-soft: light-dark(#f2cfae, #e9c4a2);
 	--link: light-dark(#b02833, #f0a8b4);

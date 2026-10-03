@@ -55,11 +55,11 @@ Shared thread: **navy** shows up in both (Himmel's blues, Marin's blazer), so th
 | bg (paper)           | `#F4F2EC` | `#1C1F24` |
 | grid lines           | `#E3E0D8` | `#2A2E35` |
 | text (ink)           | `#2A2D33` | `#E4E2DC` |
-| muted text           | `#6B6E75` | `#9A9DA4` |
-| accent (Himmel blue) | `#4F6FA3` | `#93AFD6` |
+| muted text           | `#66696F` | `#9A9DA4` |
+| accent (Himmel blue) | `#4B6A9E` | `#93AFD6` |
 | accent soft          | `#C9D7EA` | `#2E3A57` |
 
-Blue used sparingly: links, issue numbers, the "currently" labels, the odd margin doodle.
+Blue used sparingly: links, issue numbers, the "currently" labels, the odd margin doodle. Muted text and the blue keep at least 4.8:1 against bg and surface (WCAG AA).
 
 ### Natalie: Marin pastel
 
@@ -73,6 +73,9 @@ From the references: blush pink, off-white, peach, uniform navy, red bow.
 | accent pink     | `#E8949F`                   | `#F0A8B4`        |
 | peach           | `#F2CFAE`                   | `#E9C4A2`        |
 | pop (bow red)   | `#C8323E`                   | `#E0525C`        |
+| muted text      | `#555C75`                   | `#BCB6C8`        |
+| line / borders  | `#EBBDC9`                   | `#3B4872`        |
+| link            | `#B02833` (red)             | `#F0A8B4`        |
 
 Notes:
 
