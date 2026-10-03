@@ -1,5 +1,6 @@
 export * from './types.ts';
 export { art } from './art.ts';
+export { stickerCredits } from './credits.ts';
 export { currently } from './currently.ts';
 export { cvHref, education, experience, resume, skills } from './experience.ts';
 export { likes, natalieFootnote } from './likes.ts';

@@ -2,9 +2,18 @@
 	import { ArrowUpRight } from '@lucide/svelte';
 	import { dev } from '$app/env';
 	import bow from '#lib/assets/natalie/scrapbook/bow.webp';
+	import cornerFlowers from '#lib/assets/natalie/scrapbook/corner-flowers.webp';
 	import heartSticker from '#lib/assets/natalie/scrapbook/heart-sticker.webp';
+	import kaomoji from '#lib/assets/natalie/scrapbook/kaomoji.webp';
 	import ExternalLink from '#lib/components/shared/ExternalLink.svelte';
-	import { art, likes, natalieFootnote, profile, visibleProjects } from '#lib/content/index.ts';
+	import {
+		art,
+		likes,
+		natalieFootnote,
+		profile,
+		stickerCredits,
+		visibleProjects
+	} from '#lib/content/index.ts';
 	import ArtGallery from './ArtGallery.svelte';
 	import NatalieHeading from './NatalieHeading.svelte';
 	import ScrapCard from './ScrapCard.svelte';
@@ -48,6 +57,12 @@
 				{/if}
 				<p class="text-lg leading-relaxed">{profile.natalie.intro}</p>
 			</div>
+			<img
+				src={cornerFlowers}
+				alt=""
+				data-intro="heart"
+				class="pointer-events-none absolute -right-4 -bottom-4 w-24 select-none sm:w-28"
+			/>
 		</ScrapCard>
 	</section>
 
@@ -87,7 +102,13 @@
 		</ul>
 	</section>
 
-	<section aria-labelledby="natalie-projects" class="space-y-6">
+	<section aria-labelledby="natalie-projects" class="relative space-y-6">
+		<img
+			src={kaomoji}
+			alt=""
+			data-intro="heart"
+			class="pointer-events-none absolute -top-10 right-0 w-32 -rotate-3 select-none sm:w-36"
+		/>
 		<NatalieHeading id="natalie-projects" text="things i made (or broke)" />
 		<ul class="grid gap-7 sm:grid-cols-2">
 			{#each visibleProjects as project, i (project.slug)}
@@ -126,10 +147,20 @@
 		</ul>
 	</section>
 
-	<p class="text-sm text-muted">
-		<span aria-hidden="true">* </span><ExternalLink
-			class="text-link underline"
-			href={natalieFootnote.href}>{natalieFootnote.text}</ExternalLink
-		>
-	</p>
+	<div class="space-y-1 text-sm text-muted">
+		<p>
+			<span aria-hidden="true">* </span><ExternalLink
+				class="text-link underline"
+				href={natalieFootnote.href}>{natalieFootnote.text}</ExternalLink
+			>
+		</p>
+		<p class="text-xs">
+			stickers found on pinterest:
+			{#each stickerCredits as credit, i (credit.href)}
+				<ExternalLink class="underline hover:text-ink" href={credit.href}
+					>{credit.label}</ExternalLink
+				>{i < stickerCredits.length - 1 ? ', ' : ''}
+			{/each}
+		</p>
+	</div>
 </div>
