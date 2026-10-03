@@ -12,7 +12,7 @@
 		<div class="group relative float-right -mt-2 ml-4">
 			<Doodle
 				src={portrait}
-				class="size-24 text-ink motion-safe:group-hover:animate-[doodle-boil_480ms_steps(1)_infinite] sm:size-28"
+				class="size-28 text-ink motion-safe:group-hover:animate-[doodle-boil_480ms_steps(1)_infinite] sm:size-36"
 			/>
 			<span
 				class="pointer-events-none absolute top-full right-0 font-mono text-[0.65rem] whitespace-nowrap text-muted opacity-0 transition-opacity duration-200 group-hover:opacity-100"
