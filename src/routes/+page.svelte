@@ -9,5 +9,5 @@
 	<meta name="description" content={profile.pring.intro} />
 </svelte:head>
 
-<div class="natalie:hidden"><PringLayout /></div>
-<div class="hidden natalie:block"><NatalieLayout /></div>
+<div class="natalie:hidden" data-persona="pring"><PringLayout /></div>
+<div class="hidden natalie:block" data-persona="natalie"><NatalieLayout /></div>

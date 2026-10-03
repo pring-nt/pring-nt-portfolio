@@ -14,7 +14,7 @@
 	</section>
 
 	<section aria-labelledby="pring-currently" class="relative space-y-3">
-		<h2 id="pring-currently" class="font-mono text-sm text-muted">currently</h2>
+		<h2 id="pring-currently" data-intro="decode" class="font-mono text-sm text-muted">currently</h2>
 		<CurrentlyBlock items={currently} />
 		<Doodle
 			src={straightArrow}
@@ -24,7 +24,8 @@
 
 	<section aria-labelledby="pring-issues" class="space-y-3">
 		<h2 id="pring-issues" class="font-mono text-sm text-muted">
-			closed issues <span class="text-muted/70">against the world</span>
+			<span data-intro="decode">closed issues</span>
+			<span class="text-muted/70">against the world</span>
 		</h2>
 		<IssueList projects={visibleProjects} />
 	</section>

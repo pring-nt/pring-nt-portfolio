@@ -12,7 +12,7 @@
 {#if art.length > 0}
 	<ul class="grid grid-cols-2 gap-5 sm:grid-cols-3">
 		{#each art as piece, i (piece.href)}
-			<li>
+			<li data-intro="card">
 				<ExternalLink
 					href={piece.href}
 					class="block rotate-(--tilt) rounded-sm bg-bg p-2 pb-5 shadow-[0_1px_0_var(--line)] ring-1 ring-line transition-[translate,rotate,box-shadow] duration-200 hover:shadow-[0_10px_18px_-8px_color-mix(in_srgb,var(--ink)_35%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link motion-safe:hover:-translate-y-1.5 motion-safe:hover:rotate-0"

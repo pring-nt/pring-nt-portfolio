@@ -9,6 +9,6 @@
 </script>
 
 <h2 {id} class="flex items-center gap-2 font-display text-2xl">
-	<Heart class="size-4 fill-accent text-accent" aria-hidden="true" />
+	<Heart data-intro="heart" class="size-4 fill-accent text-accent" aria-hidden="true" />
 	{text}{#if footnoteMark}<sup class="text-sm text-muted">*</sup>{/if}
 </h2>

@@ -1,4 +1,5 @@
 import { flushSync } from 'svelte';
+import type { prepareIntro } from '#lib/motion/intros.ts';
 
 export type Persona = 'pring' | 'natalie';
 export type ColorMode = 'system' | 'light' | 'dark';
@@ -76,6 +77,8 @@ class ThemeState {
 	persona = $state<Persona>('pring');
 	mode = $state<ColorMode>('system');
 	#systemDark = $state(false);
+	/** Loaded after startup so animejs stays out of the first page load. */
+	#prepareIntro?: typeof prepareIntro;
 
 	dark = $derived(this.mode === 'dark' || (this.mode === 'system' && this.#systemDark));
 	theme: Theme = $derived(`${this.persona}-${this.dark ? 'dark' : 'light'}` as const);
@@ -86,6 +89,7 @@ class ThemeState {
 		this.persona = read(PERSONA_KEY, personas, 'pring');
 		this.mode = read(MODE_KEY, modes, 'system');
 		this.#systemDark = query.matches;
+		import('#lib/motion/intros.ts').then((m) => (this.#prepareIntro = m.prepareIntro));
 
 		const onChange = (event: MediaQueryListEvent) => (this.#systemDark = event.matches);
 		query.addEventListener('change', onChange);
@@ -129,13 +133,19 @@ class ThemeState {
 
 		const root = document.documentElement;
 		root.dataset.pageTurn = next;
-		const transition = document.startViewTransition(apply);
+		let playIntro = () => {};
+		const transition = document.startViewTransition(() => {
+			apply();
+			playIntro = this.#prepareIntro?.(next) ?? playIntro;
+		});
 		try {
 			await transition.ready;
 		} catch {
+			playIntro();
 			delete root.dataset.pageTurn;
 			return;
 		}
+		playIntro();
 
 		// `fill` holds the last frame so the turned page can't snap back before the transition ends.
 		const turn = pageTurns[next];

@@ -22,11 +22,13 @@
 </script>
 
 <div
+	data-intro="card"
 	class="relative rounded-md border border-line bg-surface p-5 shadow-[0_1px_0_var(--line)] {className}"
 	style:rotate="{tilt}deg"
 >
 	{#if tape !== 'none'}
 		<span
+			data-intro="tape"
 			class="absolute -top-3 h-6 w-20 rounded-[2px] bg-accent-soft/75 {tapePosition[tape]}"
 			aria-hidden="true"
 		></span>

@@ -42,5 +42,8 @@
 	"imports": {
 		"#lib": "./src/lib/index.ts",
 		"#lib/*": "./src/lib/*"
+	},
+	"dependencies": {
+		"animejs": "^4.5.0"
 	}
 }
