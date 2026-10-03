@@ -181,6 +181,26 @@
 			var(--scallop) calc(var(--scallop) * 2) repeat-y;
 }
 
+@layer base {
+	[data-theme^='natalie'] [data-site-header] {
+		isolation: isolate;
+	}
+
+	[data-theme^='natalie'] [data-site-header]::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+		background: url('./lib/assets/natalie/scrapbook/bow-pattern.webp') 0 0 / 120px;
+		opacity: 0.5;
+	}
+
+	[data-theme='natalie-dark'] [data-site-header]::before {
+		opacity: 0.25;
+	}
+}
+
 /* Page navigation: the header holds still while the content fades and slides. */
 [data-nav-transition] [data-site-header] {
 	view-transition-name: site-header;

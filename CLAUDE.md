@@ -62,6 +62,7 @@ static/                    # only files needing exact paths (favicon, robots.txt
 - **Every route is prerendered.** No server-only code, no `+page.server.ts`.
 - **Content lives only in `#lib/content/`** as typed TypeScript (types in `types.ts`, re-exported from `#lib/content/index.ts`). Both `PringLayout` and `NatalieLayout` read from the same files; never hardcode content in layout components. Per-persona copy lives on the item (e.g. `Project.issue` for Pring, `Project.natalie` for Natalie, which falls back to `summary`). Use `visibleProjects`, which skips projects marked `hidden`.
 - Shared state (persona, color mode) lives in `*.svelte.ts` files under `#lib/state/`.
+- Found art (Pinterest, official art) is a `ScrapImage` with a `credit` (source, owner, link), shown as `art: <source>` under the image. Scrapbook images live in `src/lib/assets/natalie/scrapbook/`. List every found asset, including the favicon, in [CREDITS.md](CREDITS.md).
 - Art entries in `art.ts`: image import, alt text, optional date, Instagram post URL. Source drawings are WebP, ~1200px on the long side.
 
 ## Theming

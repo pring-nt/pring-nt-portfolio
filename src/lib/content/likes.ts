@@ -1,3 +1,5 @@
+import marinWink from '#lib/assets/natalie/scrapbook/marin-wink.webp?enhanced';
+import { sonoBisqueDoll } from './credits.ts';
 import type { Like } from './types.ts';
 
 export const likes: Like[] = [
@@ -5,7 +7,12 @@ export const likes: Like[] = [
 		title: 'Sono Bisque Doll',
 		kind: 'anime',
 		natalie:
-			"sono bisque doll is totes peak?? the cosplay, the sewing, how much they care about each other's stuff. i could talk about it foreverrr (≧◡≦)"
+			"sono bisque doll is totes peak?? the cosplay, the sewing, how much they care about each other's stuff. i could talk about it foreverrr (≧◡≦)",
+		photo: {
+			image: marinWink,
+			alt: 'Marin Kitagawa winking and pinching her cheeks, in a big white bow and plaid skirt',
+			credit: sonoBisqueDoll
+		}
 	},
 	{
 		title: 'Frieren',

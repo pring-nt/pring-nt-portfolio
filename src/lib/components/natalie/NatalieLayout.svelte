@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { ArrowUpRight } from '@lucide/svelte';
 	import { dev } from '$app/env';
+	import bow from '#lib/assets/natalie/scrapbook/bow.webp';
+	import heartSticker from '#lib/assets/natalie/scrapbook/heart-sticker.webp';
 	import ExternalLink from '#lib/components/shared/ExternalLink.svelte';
 	import { art, likes, natalieFootnote, profile, visibleProjects } from '#lib/content/index.ts';
 	import ArtGallery from './ArtGallery.svelte';
 	import NatalieHeading from './NatalieHeading.svelte';
 	import ScrapCard from './ScrapCard.svelte';
+	import ScrapPhoto from './ScrapPhoto.svelte';
+
+	const avatar = profile.natalie.avatar;
 
 	const tilts = [-1, 0.75, -0.5, 1];
 	const tapes = ['center', 'left', 'right', 'center'] as const;
@@ -14,12 +19,46 @@
 <div class="space-y-14">
 	<section aria-label="About">
 		<ScrapCard tilt={-0.5}>
-			<p class="text-lg leading-relaxed">{profile.natalie.intro}</p>
+			<div class="flex flex-col items-center gap-5 sm:flex-row">
+				{#if avatar}
+					<figure class="relative shrink-0">
+						<enhanced:img
+							src={avatar.image}
+							alt={avatar.alt}
+							sizes="128px"
+							draggable="false"
+							class="size-28 rounded-full object-cover ring-4 ring-bg sm:size-32"
+						/>
+						<img
+							src={bow}
+							alt=""
+							data-intro="heart"
+							class="pointer-events-none absolute -top-5 -left-6 w-16 -rotate-12 select-none"
+						/>
+						<figcaption class="mt-2 text-center text-[0.65rem] text-muted">
+							<ExternalLink
+								href={avatar.credit.href}
+								title="{avatar.credit.source} © {avatar.credit.owner}"
+								class="hover:text-ink"
+							>
+								art: {avatar.credit.source}
+							</ExternalLink>
+						</figcaption>
+					</figure>
+				{/if}
+				<p class="text-lg leading-relaxed">{profile.natalie.intro}</p>
+			</div>
 		</ScrapCard>
 	</section>
 
 	{#if art.length > 0 || dev}
-		<section aria-labelledby="natalie-art" class="space-y-5">
+		<section aria-labelledby="natalie-art" class="relative space-y-5">
+			<img
+				src={heartSticker}
+				alt=""
+				data-intro="heart"
+				class="pointer-events-none absolute -top-9 right-0 w-28 rotate-6 select-none sm:w-32"
+			/>
 			<NatalieHeading id="natalie-art" text="stuff i drew" />
 			<ArtGallery {art} />
 		</section>
@@ -30,7 +69,14 @@
 		<ul class="grid gap-6 sm:grid-cols-2">
 			{#each likes as like, i (like.title)}
 				<li>
-					<ScrapCard tilt={tilts[(i + 1) % tilts.length]} tape={tapes[(i + 1) % tapes.length]}>
+					<ScrapCard
+						tilt={tilts[(i + 1) % tilts.length]}
+						tape={tapes[(i + 1) % tapes.length]}
+						class="flow-root"
+					>
+						{#if like.photo}
+							<ScrapPhoto photo={like.photo} sizes="96px" class="float-right mb-2 ml-3 w-24" />
+						{/if}
 						<h3 class="font-display text-lg">{like.title}</h3>
 						{#if like.natalie}
 							<p class="mt-1.5 leading-relaxed">{like.natalie}</p>

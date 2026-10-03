@@ -29,11 +29,21 @@ export type Link = {
 
 export type CurrentlyItem = { label: string; value: string };
 
+/** Found art used as scrapbook decoration on Natalie's side, always credited. */
+export type ScrapImage = {
+	image: Picture;
+	alt: string;
+	/** e.g. source `Sono Bisque Doll`, owner `Shinichi Fukuda / Square Enix`. */
+	credit: { source: string; owner: string; href: string };
+};
+
 export type Like = {
 	title: string;
 	kind: 'anime' | 'manga' | 'game' | 'other';
 	/** Natalie's gush about it. */
 	natalie?: string;
+	/** A photo taped onto Natalie's card for it. */
+	photo?: ScrapImage;
 };
 
 export type PersonaProfile = {
@@ -41,6 +51,7 @@ export type PersonaProfile = {
 	intro: string;
 	/** Footer line that leads to the other persona. */
 	switchHint: string;
+	avatar?: ScrapImage;
 };
 
 export type Artwork = {

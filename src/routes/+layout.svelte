@@ -6,7 +6,8 @@
 	import '../app.css';
 	import { onMount } from 'svelte';
 	import { onNavigate } from '$app/navigation';
-	import favicon from '#lib/assets/favicon.svg';
+	import appleTouchIcon from '#lib/assets/apple-touch-icon.png';
+	import favicon from '#lib/assets/favicon.png';
 	import SiteFooter from '#lib/components/shared/SiteFooter.svelte';
 	import SiteHeader from '#lib/components/shared/SiteHeader.svelte';
 	import { themeState } from '#lib/state/theme.svelte.ts';
@@ -34,7 +35,8 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" type="image/png" href={favicon} />
+	<link rel="apple-touch-icon" href={appleTouchIcon} />
 </svelte:head>
 
 <div class="flex min-h-dvh flex-col">
