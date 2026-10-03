@@ -14,17 +14,24 @@ type Intro = (find: (kind: string) => HTMLElement[], previousName: string) => ()
 const heartPath =
 	'M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.2 5 6.6 5c2 0 3.6 1.1 5.4 3 1.8-1.9 3.4-3 5.4-3 3.4 0 5.4 3.6 4.1 6.8C19.5 16.4 12 21 12 21z';
 
-/** Scrambles the header name from the previous persona's name into this one's. */
-function swapName(find: (kind: string) => HTMLElement[], previousName: string) {
+/**
+ * Scrambles the header name from the previous persona's name into this one's, starting once the
+ * page turn has uncovered the header. A timeout rather than `delay`, since scrambleText already
+ * scrambles during its delay and the old name should hold still until then.
+ */
+function swapName(find: (kind: string) => HTMLElement[], previousName: string, start: number) {
 	const [name] = find('name');
 	if (!name) return () => {};
 	const text = name.textContent ?? '';
 	name.textContent = previousName;
 	return () =>
-		animate(name, {
-			innerHTML: scrambleText({ text, chars: 'a-z', revealRate: 18, settleDuration: 380 }),
-			delay: 300
-		});
+		setTimeout(
+			() =>
+				animate(name, {
+					innerHTML: scrambleText({ text, chars: 'a-z', revealRate: 9, settleDuration: 550 })
+				}),
+			start
+		);
 }
 
 /** Throws a handful of small hearts out of `origin`, then removes them. */
@@ -67,7 +74,7 @@ const release = (targets: HTMLElement[]) => () => {
 
 const intros: Record<Persona, Intro> = {
 	natalie(find, previousName) {
-		const playName = swapName(find, previousName);
+		const playName = swapName(find, previousName, 700);
 		const [burstFrom] = find('burst');
 		const cards = find('card');
 		const tapes = find('tape');
@@ -106,7 +113,7 @@ const intros: Record<Persona, Intro> = {
 	},
 
 	pring(find, previousName) {
-		const playName = swapName(find, previousName);
+		const playName = swapName(find, previousName, 550);
 		const labels = find('decode');
 		const rows = find('row');
 		const checks = find('check').flatMap((icon) =>
