@@ -87,7 +87,7 @@ Notes:
   - Alternatives: footer line ("not feeling like Nathan today?"), clicking the avatar
 - Light/dark follows the system by default, with a manual toggle
 - Choice saved in localStorage and applied before first paint (no flash)
-- The switch is the only real animation on the site
+- The switch is the main animation on the site; Natalie's side also has small hover effects on links, art and buttons (Pring's stays plain)
 
 ## Content
 

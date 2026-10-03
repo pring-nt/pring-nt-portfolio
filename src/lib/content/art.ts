@@ -12,42 +12,42 @@ import type { Artwork } from './types.ts';
 export const art: Artwork[] = [
 	{
 		image: aya1,
-		alt: 'Pencil sketch of Aya winking and pointing, with a "...pfft!" speech bubble',
+		alt: 'Pencil drawing of pre-timeskip Aya winking and pointing',
 		href: 'https://www.instagram.com/p/DdJf8L4zXKH/'
 	},
 	{
 		image: aya2,
-		alt: 'Ink sketch of Aya with wavy hair, a choker and a mole under one eye',
+		alt: 'Marker doodle of Aya on a whiteboard',
 		href: 'https://www.instagram.com/p/DU2pJWhEfce/'
 	},
 	{
 		image: aya3,
-		alt: 'Pencil sketch of Aya with a chocolate bar in her mouth and a speech bubble',
+		alt: 'Pencil sketch of post-timeskip Aya holding a disc case to her mouth',
 		href: 'https://www.instagram.com/p/DYsVnOLTF8R/'
 	},
 	{
 		image: mitsuki,
-		alt: 'Shaded pencil drawing of Mitsuki in a hoodie, glasses and a face mask',
+		alt: 'Pencil redraw of Mitsuki in a hoodie and face mask, from the drama CD mini manga cover',
 		href: 'https://www.instagram.com/p/DU2qAusEUzJ/'
 	},
 	{
 		image: frieren1,
-		alt: 'Pencil sketch of Frieren looking up, her hair loose',
+		alt: 'Pencil sketch of Frieren looking up, from the Frieren looking up trend',
 		href: 'https://www.instagram.com/p/DVBxyJ9EkEc/'
 	},
 	{
 		image: frieren2,
-		alt: 'Two chibi ink sketches: a smug Frieren and a girl happily eating',
+		alt: 'Chibi ink sketches of a smug Frieren and Fern happily eating',
 		href: 'https://www.instagram.com/p/DU2qQl0kSO3/'
 	},
 	{
 		image: greenYuri,
-		alt: 'Pencil sketch of two girls side by side, one covering her mouth',
+		alt: 'Pencil sketch of the green yuri extras from Sumiko, two girls side by side',
 		href: 'https://www.instagram.com/p/DU2pR02EQJK/'
 	},
 	{
 		image: luka,
-		alt: 'Pencil sketch of Luka in glasses, chewing on a pen, surrounded by doodled stars',
+		alt: 'Pencil sketch of Luka in glasses, chewing on a pen',
 		href: 'https://www.instagram.com/p/DU2qZufkWOX/'
 	},
 	{

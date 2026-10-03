@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { links, profile } from '#lib/content/index.ts';
 	import { themeState } from '#lib/state/theme.svelte.ts';
+	import ExternalLink from './ExternalLink.svelte';
 </script>
 
 <footer class="space-y-4 border-t border-line pt-6 text-sm">
 	<ul class="flex flex-wrap gap-x-5 gap-y-2">
 		{#each links as link (link.kind)}
 			<li>
-				<a class="text-link hover:underline" href={link.href}>
+				<ExternalLink class="text-link hover:underline" href={link.href}>
 					<span class="text-xs text-muted pring:font-mono">{link.label}</span>
 					{link.handle}
-				</a>
+				</ExternalLink>
 			</li>
 		{/each}
 	</ul>

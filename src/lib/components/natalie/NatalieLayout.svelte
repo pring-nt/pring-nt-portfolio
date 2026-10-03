@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ArrowUpRight } from '@lucide/svelte';
 	import { dev } from '$app/env';
+	import ExternalLink from '#lib/components/shared/ExternalLink.svelte';
 	import { art, likes, natalieFootnote, profile, visibleProjects } from '#lib/content/index.ts';
 	import ArtGallery from './ArtGallery.svelte';
 	import NatalieHeading from './NatalieHeading.svelte';
@@ -57,14 +58,20 @@
 						<p class="mt-1.5 leading-relaxed">{project.natalie ?? project.summary}</p>
 						<p class="mt-3 flex gap-4 text-sm">
 							{#if project.site}
-								<a class="inline-flex items-center text-link underline" href={project.site}>
+								<ExternalLink
+									class="inline-flex items-center text-link underline"
+									href={project.site}
+								>
 									go see it<ArrowUpRight class="size-3.5" aria-hidden="true" />
-								</a>
+								</ExternalLink>
 							{/if}
 							{#if project.repo}
-								<a class="inline-flex items-center text-link underline" href={project.repo}>
+								<ExternalLink
+									class="inline-flex items-center text-link underline"
+									href={project.repo}
+								>
 									peek at the code<ArrowUpRight class="size-3.5" aria-hidden="true" />
-								</a>
+								</ExternalLink>
 							{/if}
 						</p>
 					</ScrapCard>
@@ -74,8 +81,9 @@
 	</section>
 
 	<p class="text-sm text-muted">
-		<span aria-hidden="true">* </span><a class="text-link underline" href={natalieFootnote.href}
-			>{natalieFootnote.text}</a
+		<span aria-hidden="true">* </span><ExternalLink
+			class="text-link underline"
+			href={natalieFootnote.href}>{natalieFootnote.text}</ExternalLink
 		>
 	</p>
 </div>

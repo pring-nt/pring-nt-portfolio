@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ArrowUpRight, FileText } from '@lucide/svelte';
+	import ExternalLink from '#lib/components/shared/ExternalLink.svelte';
 	import SectionHeading from '#lib/components/shared/SectionHeading.svelte';
 	import { cvHref, education, experience, resume, skills } from '#lib/content/index.ts';
 
@@ -23,7 +24,8 @@
 		</div>
 		<a
 			href={cvHref}
-			class="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-3 py-1.5 text-sm text-link hover:underline"
+			target="_blank"
+			class="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-3 py-1.5 text-sm text-link transition-[translate,box-shadow] duration-200 hover:underline natalie:hover:shadow-[0_6px_12px_-6px_color-mix(in_srgb,var(--ink)_35%,transparent)] natalie:motion-safe:hover:-translate-y-0.5"
 		>
 			<FileText class="size-4" aria-hidden="true" />
 			Download CV (PDF)
@@ -47,9 +49,12 @@
 					<div>
 						<h3 class="font-semibold">
 							{#if entry.href}
-								<a class="inline-flex items-center text-link hover:underline" href={entry.href}>
+								<ExternalLink
+									class="inline-flex items-center text-link hover:underline"
+									href={entry.href}
+								>
 									{entry.name}<ArrowUpRight class="size-4" aria-hidden="true" />
-								</a>
+								</ExternalLink>
 							{:else}
 								{entry.name}
 							{/if}

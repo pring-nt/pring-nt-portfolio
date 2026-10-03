@@ -13,7 +13,7 @@
 
 <button
 	type="button"
-	class="inline-flex size-9 items-center justify-center rounded-md text-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent {className}"
+	class="inline-flex size-9 items-center justify-center rounded-md text-muted transition-[color,rotate] duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent natalie:motion-safe:hover:-rotate-12 {className}"
 	aria-label={label}
 	title={label}
 	onclick={() => themeState.setMode(next[themeState.mode])}

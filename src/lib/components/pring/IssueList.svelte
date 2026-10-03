@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { ArrowUpRight, CircleCheck } from '@lucide/svelte';
+	import ExternalLink from '#lib/components/shared/ExternalLink.svelte';
 	import type { Project } from '#lib/content/index.ts';
 
 	let { projects }: { projects: Project[] } = $props();
@@ -36,14 +37,20 @@
 				<p class="flex flex-wrap gap-x-4 gap-y-1 pt-0.5 font-mono text-xs">
 					<span class="text-muted">{project.tags.join(' · ')}</span>
 					{#if project.site}
-						<a class="inline-flex items-center text-link hover:underline" href={project.site}>
+						<ExternalLink
+							class="inline-flex items-center text-link hover:underline"
+							href={project.site}
+						>
 							{project.name}<ArrowUpRight class="size-3.5" aria-hidden="true" />
-						</a>
+						</ExternalLink>
 					{/if}
 					{#if project.repo}
-						<a class="inline-flex items-center text-link hover:underline" href={project.repo}>
+						<ExternalLink
+							class="inline-flex items-center text-link hover:underline"
+							href={project.repo}
+						>
 							source<ArrowUpRight class="size-3.5" aria-hidden="true" />
-						</a>
+						</ExternalLink>
 					{/if}
 				</p>
 			</article>

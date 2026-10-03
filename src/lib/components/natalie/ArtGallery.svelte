@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/env';
+	import ExternalLink from '#lib/components/shared/ExternalLink.svelte';
 	import type { Artwork } from '#lib/content/index.ts';
 
 	let { art }: { art: Artwork[] } = $props();
@@ -11,10 +12,11 @@
 {#if art.length > 0}
 	<ul class="grid grid-cols-2 gap-5 sm:grid-cols-3">
 		{#each art as piece, i (piece.href)}
-			<li style:rotate="{tilts[i % tilts.length]}deg">
-				<a
+			<li>
+				<ExternalLink
 					href={piece.href}
-					class="block rounded-sm bg-bg p-2 pb-1 shadow-[0_1px_0_var(--line)] ring-1 ring-line focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link"
+					class="block rotate-(--tilt) rounded-sm bg-bg p-2 pb-5 shadow-[0_1px_0_var(--line)] ring-1 ring-line transition-[translate,rotate,box-shadow] duration-200 hover:shadow-[0_10px_18px_-8px_color-mix(in_srgb,var(--ink)_35%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link motion-safe:hover:-translate-y-1.5 motion-safe:hover:rotate-0"
+					style="--tilt: {tilts[i % tilts.length]}deg"
 				>
 					<enhanced:img
 						src={piece.image}
@@ -22,10 +24,12 @@
 						sizes="(min-width: 640px) 220px, 45vw"
 						class="aspect-[4/5] w-full rounded-[2px] object-cover"
 					/>
-					<span class="block py-1.5 text-center text-xs text-muted">
-						{piece.date ? dateFormat.format(new Date(piece.date)) : 'on instagram'}
-					</span>
-				</a>
+					{#if piece.date}
+						<span class="-mb-3 block pt-1.5 text-center text-xs text-muted">
+							{dateFormat.format(new Date(piece.date))}
+						</span>
+					{/if}
+				</ExternalLink>
 			</li>
 		{/each}
 	</ul>

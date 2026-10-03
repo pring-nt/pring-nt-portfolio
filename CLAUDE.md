@@ -58,6 +58,7 @@ static/                    # only files needing exact paths (favicon, robots.txt
 ## Conventions
 
 - Everything reusable lives in `src/lib/`. Components are grouped by persona (`pring/`, `natalie/`) plus `shared/`.
+- Links to other sites use `shared/ExternalLink.svelte`, which opens http(s) links in a new tab (with `rel="noopener noreferrer"` and a screen-reader hint) and leaves `mailto:` alone.
 - **Every route is prerendered.** No server-only code, no `+page.server.ts`.
 - **Content lives only in `#lib/content/`** as typed TypeScript (types in `types.ts`, re-exported from `#lib/content/index.ts`). Both `PringLayout` and `NatalieLayout` read from the same files; never hardcode content in layout components. Per-persona copy lives on the item (e.g. `Project.issue` for Pring, `Project.natalie` for Natalie, which falls back to `summary`). Use `visibleProjects`, which skips projects marked `hidden`.
 - Shared state (persona, color mode) lives in `*.svelte.ts` files under `#lib/state/`.
@@ -70,9 +71,9 @@ static/                    # only files needing exact paths (favicon, robots.txt
 - Text colors: use `ink`, `muted` and `link` for text. Natalie's `accent` (pink) and `pop` (bow red) fail contrast as body text, so they're decoration only.
 - An inline script in `src/app.html` reads `persona` / `color-mode` from localStorage (in try/catch) and sets `data-theme` before first paint. Defaults: Pring, system color mode. `themeState` in [theme.svelte.ts](src/lib/state/theme.svelte.ts) uses the same keys; keep them in sync.
 - `themeState` starts at the defaults so hydration matches the prerendered HTML, then loads the saved choice in `start()` (called once from the root layout). So **never branch markup on `themeState.persona`** for content visible on first paint, or a Natalie visitor sees Pring content flash. Render both persona layouts and hide the inactive one with the `pring:` / `natalie:` variants instead.
-- The persona switch is slightly hidden (current favorite: clicking the name in the header) and is the only real animation on the site.
+- The persona switch is slightly hidden (current favorite: clicking the name in the header) and is the site's big animation.
 - Fonts are self-hosted via Fontsource and imported in `+layout.svelte`: Pring uses IBM Plex Sans (400/600) + IBM Plex Mono (400), Natalie uses Nunito Variable for body and Georgia for `font-display`. Only import weights actually used.
-- Backgrounds (Pring graph paper, Natalie gingham) live in `app.css` on `body`, keyed by `data-theme`. Natalie's tilted, taped cards are `ScrapCard`; the persona switch is the only animation, so no hover or entrance animations.
+- Backgrounds (Pring graph paper, Natalie gingham) live in `app.css` on `body`, keyed by `data-theme`. Natalie's tilted, taped cards are `ScrapCard`. No entrance animations. Pring hovers stay plain (color/underline). Natalie gets small hover effects on interactive bits (wavy pop-red underline and arrow nudge on links via `app.css`, lifting gallery cards, heart bounce on the header name); wrap any movement in `motion-safe:`.
 - Light pink fails contrast as text. Use it for backgrounds and decoration only; Natalie's links use navy or red.
 
 ## Design constraints
