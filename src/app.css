@@ -192,12 +192,13 @@
 		inset: 0;
 		z-index: -1;
 		pointer-events: none;
-		background: url('./lib/assets/natalie/scrapbook/bow-pattern.webp') 0 0 / 120px;
-		opacity: 0.5;
+		background-color: var(--accent);
+		mask: url('./lib/assets/natalie/scrapbook/bow-pattern.webp') 0 0 / 120px;
+		opacity: 0.85;
 	}
 
 	[data-theme='natalie-dark'] [data-site-header]::before {
-		opacity: 0.25;
+		opacity: 0.6;
 	}
 }
 
