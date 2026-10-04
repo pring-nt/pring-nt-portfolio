@@ -152,12 +152,20 @@
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
+		/* Offsets instead of translate: a transform transition gets its own compositor layer, which
+		   makes Chromium re-rasterize the tilted cards around it and blurs their text. */
 		[data-theme^='natalie'] a > svg {
-			transition: translate 150ms;
+			position: relative;
+			top: 0;
+			left: 0;
+			transition:
+				top 150ms,
+				left 150ms;
 		}
 
 		[data-theme^='natalie'] a:hover > svg {
-			translate: 2px -2px;
+			top: -2px;
+			left: 2px;
 		}
 	}
 }
