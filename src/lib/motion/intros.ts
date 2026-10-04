@@ -1,4 +1,4 @@
-import { animate, createDrawable, scrambleText, spring, stagger, utils } from 'animejs';
+import { animate, createDrawable, scrambleText, splitText, spring, stagger, utils } from 'animejs';
 import type { Persona } from '#lib/state/theme.svelte.ts';
 
 /**
@@ -14,11 +14,11 @@ type Intro = (find: (kind: string) => HTMLElement[], previousName: string) => ()
 const heartPath =
 	'M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.2 5 6.6 5c2 0 3.6 1.1 5.4 3 1.8-1.9 3.4-3 5.4-3 3.4 0 5.4 3.6 4.1 6.8C19.5 16.4 12 21 12 21z';
 
-/** Stop functions for in-flight name scrambles, so a quick second switch can't leave a name half-swapped. */
-const nameScrambles = new Map<HTMLElement, () => void>();
+/** Stop functions for in-flight name swaps, so a quick second switch can't leave a name half-swapped. */
+const nameSwaps = new Map<HTMLElement, () => void>();
 
 /**
- * Scrambles the header name from the previous persona's name into this one's, starting once the
+ * Pring's header name scrambles from the previous persona's name into this one's, starting once the
  * page turn has uncovered the header. A timeout rather than `delay`, since scrambleText already
  * scrambles during its delay and the old name should hold still until then. The width glides from
  * the old name to the new one so the random glyph widths don't jitter whatever sits next to it.
@@ -42,9 +42,9 @@ function swapName(find: (kind: string) => HTMLElement[], previousName: string, s
 		const animation = animate(name, {
 			width: { from, to, duration: duration + settleDuration, ease: 'inOutQuad' },
 			innerHTML: scrambleText({ text, chars: 'a-z', revealRate, settleDuration }),
-			onComplete: () => nameScrambles.get(name)?.()
+			onComplete: () => nameSwaps.get(name)?.()
 		});
-		nameScrambles.set(name, () => finish(animation));
+		nameSwaps.set(name, () => finish(animation));
 	};
 	const finish = (animation?: { cancel(): unknown }) => {
 		clearTimeout(timeout);
@@ -52,10 +52,44 @@ function swapName(find: (kind: string) => HTMLElement[], previousName: string, s
 		name.textContent = text;
 		name.style.removeProperty('width');
 		name.style.removeProperty('white-space');
-		nameScrambles.delete(name);
+		nameSwaps.delete(name);
 	};
 	let timeout: ReturnType<typeof setTimeout>;
-	nameScrambles.set(name, () => finish());
+	nameSwaps.set(name, () => finish());
+	return () => (timeout = setTimeout(play, start));
+}
+
+/**
+ * Natalie's header name hops in letter by letter, each letter flipping once on the way up and
+ * bouncing back onto the line. The letters stay hidden until the page turn has uncovered the header.
+ */
+function hopName(find: (kind: string) => HTMLElement[], start: number) {
+	const [name] = find('name');
+	if (!name) return () => {};
+	const split = splitText(name, { chars: true });
+	utils.set(split.chars, { opacity: 0 });
+
+	const play = () => {
+		const animation = animate(split.chars, {
+			opacity: { to: 1, duration: 120, ease: 'linear' },
+			y: [
+				{ to: '-0.6em', ease: 'outExpo', duration: 420 },
+				{ to: 0, ease: 'outBounce', duration: 650, delay: 60 }
+			],
+			rotate: { from: '-1turn', duration: 560, ease: 'inOutCirc' },
+			delay: stagger(50),
+			onComplete: () => nameSwaps.get(name)?.()
+		});
+		nameSwaps.set(name, () => finish(animation));
+	};
+	const finish = (animation?: { cancel(): unknown }) => {
+		clearTimeout(timeout);
+		animation?.cancel();
+		split.revert();
+		nameSwaps.delete(name);
+	};
+	let timeout: ReturnType<typeof setTimeout>;
+	nameSwaps.set(name, () => finish());
 	return () => (timeout = setTimeout(play, start));
 }
 
@@ -98,8 +132,8 @@ const release = (targets: HTMLElement[]) => () => {
 };
 
 const intros: Record<Persona, Intro> = {
-	natalie(find, previousName) {
-		const playName = swapName(find, previousName, 700);
+	natalie(find) {
+		const playName = hopName(find, 700);
 		const [burstFrom] = find('burst');
 		const cards = find('card');
 		const tapes = find('tape');
@@ -177,7 +211,7 @@ const inPersona = (persona: Persona, kind: string) => [
 ];
 
 export function prepareIntro(persona: Persona) {
-	for (const stop of [...nameScrambles.values()]) stop();
+	for (const stop of [...nameSwaps.values()]) stop();
 	const find = (kind: string) =>
 		inPersona(persona, kind).filter((el) => el.getBoundingClientRect().top < innerHeight);
 	const [previous] = inPersona(persona === 'pring' ? 'natalie' : 'pring', 'name');
