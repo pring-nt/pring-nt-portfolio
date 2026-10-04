@@ -69,6 +69,12 @@ const pageTurns: Record<
 	}
 };
 
+/** Natalie's scalloped outline stitches itself down the page edge just before the page lifts. */
+const edgeDrawIn: [Keyframe[], KeyframeAnimationOptions] = [
+	[{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0)' }],
+	{ duration: 380, easing: 'cubic-bezier(0.3, 0, 0.2, 1)' }
+];
+
 /**
  * Starts at the defaults so hydration matches the prerendered HTML. `start()` then loads the saved
  * choice, which the inline script in app.html has already applied to `data-theme`.
@@ -165,6 +171,13 @@ class ThemeState {
 			root.animate(turn.old, { ...timing, pseudoElement: '::view-transition-old(root)' }),
 			root.animate(turn.new, { ...timing, pseudoElement: '::view-transition-new(root)' })
 		];
+		if (edge) {
+			const pseudoElement = '::view-transition-old(page-turn-edge)';
+			animations.push(
+				root.animate(turn.old, { ...timing, pseudoElement }),
+				root.animate(edgeDrawIn[0], { ...edgeDrawIn[1], fill: 'both', pseudoElement })
+			);
+		}
 		await transition.finished;
 		for (const animation of animations) animation.cancel();
 		delete root.dataset.pageTurn;

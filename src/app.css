@@ -183,9 +183,10 @@
 
 /*
  * Natalie's page turn cuts a scalloped edge into the turning page. The mask can't draw a border, so
- * theme.svelte.ts adds .page-turn-edge (a pink outline along the same scallops) to the page just
- * before the old snapshot is taken. The scrollbar is part of the snapshot but not of the fixed
- * overlay, so both line up against --page-turn-scrollbar.
+ * theme.svelte.ts adds .page-turn-edge (a pink outline along the same scallops) just before the old
+ * snapshot is taken. It gets its own snapshot so it can stitch itself in, then turns with the page.
+ * The scrollbar is part of the page snapshot but not of the fixed overlay, so the mask is shifted
+ * by --page-turn-scrollbar to line up with it.
  */
 :root {
 	--scallop: 14px;
@@ -202,8 +203,8 @@
 .page-turn-edge {
 	position: fixed;
 	inset: 0;
-	z-index: 2147483647;
 	pointer-events: none;
+	view-transition-name: page-turn-edge;
 	background: radial-gradient(
 			circle var(--scallop) at 0 50%,
 			#0000 calc(100% - 4px),
@@ -211,6 +212,11 @@
 			#0000 100%
 		)
 		right center / var(--scallop) calc(var(--scallop) * 2) repeat-y;
+}
+
+::view-transition-old(page-turn-edge) {
+	animation: none;
+	backface-visibility: hidden;
 }
 
 @layer base {
