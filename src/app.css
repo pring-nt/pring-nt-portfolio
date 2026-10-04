@@ -186,14 +186,15 @@
  * theme.svelte.ts adds .page-turn-edge (a pink outline along the same scallops) just before the old
  * snapshot is taken. It gets its own snapshot so it can stitch itself in, then turns with the page.
  * The scrollbar is part of the page snapshot but not of the fixed overlay, so the mask is shifted
- * by --page-turn-scrollbar to line up with it.
+ * by --page-turn-scrollbar (set from theme.svelte.ts) to line up with it.
  */
 :root {
 	--scallop: 14px;
+	--page-turn-scrollbar: 0px;
 }
 
 [data-page-turn='natalie']::view-transition-old(root) {
-	--sb: var(--page-turn-scrollbar, 0px);
+	--sb: var(--page-turn-scrollbar);
 	mask:
 		linear-gradient(#000 0 0) left / calc(100% - var(--scallop) - var(--sb)) 100% no-repeat,
 		radial-gradient(circle var(--scallop) at 0 50%, #000 calc(100% - 1px), #0000) right var(--sb)
@@ -207,8 +208,8 @@
 	view-transition-name: page-turn-edge;
 	background: radial-gradient(
 			circle var(--scallop) at 0 50%,
-			#0000 calc(100% - 4px),
-			light-dark(#e8949f, #f0a8b4) calc(100% - 3.5px) calc(100% - 1px),
+			#0000 calc(100% - 5px),
+			light-dark(#e8949f, #f0a8b4) calc(100% - 4px) calc(100% - 1px),
 			#0000 100%
 		)
 		right center / var(--scallop) calc(var(--scallop) * 2) repeat-y;
@@ -253,15 +254,15 @@
 		rotate: 0deg;
 	}
 	25% {
-		translate: 0.5px -0.5px;
+		translate: 1px -1px;
 		rotate: -1.2deg;
 	}
 	50% {
-		translate: -0.5px 0.5px;
+		translate: -1px 1px;
 		rotate: 0.8deg;
 	}
 	75% {
-		translate: 0.5px 0.5px;
+		translate: 1px 1px;
 		rotate: -0.4deg;
 	}
 }
