@@ -29,18 +29,32 @@ function write(key: string, value: string) {
 	}
 }
 
+/** Natalie's turn starts with a slight lift while the scalloped outline stitches down the edge. */
+const stitch = { duration: 440, easing: 'cubic-bezier(0.5, 0, 0.3, 1)' };
+const turnEasing = 'cubic-bezier(0.45, 0, 0.3, 1)';
+
 const pageTurns: Record<
 	Persona,
-	{ old: Keyframe[]; new: Keyframe[]; timing: KeyframeAnimationOptions }
+	{
+		old: Keyframe[];
+		new: Keyframe[];
+		timing: KeyframeAnimationOptions;
+		/** Holds the entrances in intros.ts back until the page has started to move. */
+		introDelay: number;
+	}
 > = {
 	natalie: {
 		old: [
-			{ transformOrigin: 'left center', transform: 'perspective(2400px) rotateY(0deg)' },
 			{
 				transformOrigin: 'left center',
-				transform: 'perspective(2400px) rotateY(-30deg) rotateZ(-1deg)',
-				filter: 'brightness(0.97)',
-				offset: 0.35
+				transform: 'perspective(2400px) rotateY(0deg)',
+				easing: 'ease-in-out'
+			},
+			{
+				transformOrigin: 'left center',
+				transform: 'perspective(2400px) rotateY(-4deg)',
+				offset: 0.35,
+				easing: turnEasing
 			},
 			{
 				transformOrigin: 'left center',
@@ -50,10 +64,17 @@ const pageTurns: Record<
 		],
 		new: [
 			{ transform: 'scale(0.96) rotate(-0.8deg)', filter: 'brightness(0.88)' },
-			{ transform: 'scale(1.01) rotate(0.3deg)', filter: 'brightness(1)', offset: 0.82 },
+			{
+				transform: 'scale(0.96) rotate(-0.8deg)',
+				filter: 'brightness(0.88)',
+				offset: 0.35,
+				easing: turnEasing
+			},
+			{ transform: 'scale(1.01) rotate(0.3deg)', filter: 'brightness(1)', offset: 0.88 },
 			{ transform: 'none' }
 		],
-		timing: { duration: 900, easing: 'cubic-bezier(0.45, 0, 0.3, 1)' }
+		timing: { duration: 1250 },
+		introDelay: 350
 	},
 	pring: {
 		old: [
@@ -65,15 +86,10 @@ const pageTurns: Record<
 			}
 		],
 		new: [{ filter: 'brightness(0.88)' }, { filter: 'brightness(1)' }],
-		timing: { duration: 650, easing: 'cubic-bezier(0.6, 0, 0.2, 1)' }
+		timing: { duration: 650, easing: 'cubic-bezier(0.6, 0, 0.2, 1)' },
+		introDelay: 0
 	}
 };
-
-/** Natalie's scalloped outline stitches itself down the page edge just before the page lifts. */
-const edgeDrawIn: [Keyframe[], KeyframeAnimationOptions] = [
-	[{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0)' }],
-	{ duration: 380, easing: 'cubic-bezier(0.3, 0, 0.2, 1)' }
-];
 
 /**
  * Starts at the defaults so hydration matches the prerendered HTML. `start()` then loads the saved
@@ -162,10 +178,10 @@ class ThemeState {
 			root.style.removeProperty('--page-turn-scrollbar');
 			return;
 		}
-		playIntro();
+		const turn = pageTurns[next];
+		setTimeout(playIntro, turn.introDelay);
 
 		// `fill` holds the last frame so the turned page can't snap back before the transition ends.
-		const turn = pageTurns[next];
 		const timing = { ...turn.timing, fill: 'both' } as const;
 		const animations = [
 			root.animate(turn.old, { ...timing, pseudoElement: '::view-transition-old(root)' }),
@@ -175,7 +191,11 @@ class ThemeState {
 			const pseudoElement = '::view-transition-old(page-turn-edge)';
 			animations.push(
 				root.animate(turn.old, { ...timing, pseudoElement }),
-				root.animate(edgeDrawIn[0], { ...edgeDrawIn[1], fill: 'both', pseudoElement })
+				root.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0)' }], {
+					...stitch,
+					fill: 'both',
+					pseudoElement
+				})
 			);
 		}
 		await transition.finished;
