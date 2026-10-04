@@ -133,8 +133,17 @@ class ThemeState {
 
 		const root = document.documentElement;
 		root.dataset.pageTurn = next;
+		let edge: HTMLElement | undefined;
+		if (next === 'natalie') {
+			root.style.setProperty('--page-turn-scrollbar', `${innerWidth - root.clientWidth}px`);
+			edge = document.createElement('div');
+			edge.className = 'page-turn-edge';
+			edge.setAttribute('aria-hidden', 'true');
+			document.body.append(edge);
+		}
 		let playIntro = () => {};
 		const transition = document.startViewTransition(() => {
+			edge?.remove();
 			apply();
 			playIntro = this.#prepareIntro?.(next) ?? playIntro;
 		});
@@ -142,7 +151,9 @@ class ThemeState {
 			await transition.ready;
 		} catch {
 			playIntro();
+			edge?.remove();
 			delete root.dataset.pageTurn;
+			root.style.removeProperty('--page-turn-scrollbar');
 			return;
 		}
 		playIntro();
@@ -157,6 +168,7 @@ class ThemeState {
 		await transition.finished;
 		for (const animation of animations) animation.cancel();
 		delete root.dataset.pageTurn;
+		root.style.removeProperty('--page-turn-scrollbar');
 	}
 
 	setMode(mode: ColorMode) {

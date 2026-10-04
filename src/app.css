@@ -173,12 +173,36 @@
 	backface-visibility: hidden;
 }
 
-[data-page-turn='natalie']::view-transition-old(root) {
+/*
+ * Natalie's page turn cuts a scalloped edge into the turning page. The mask can't draw a border, so
+ * theme.svelte.ts adds .page-turn-edge (a pink outline along the same scallops) to the page just
+ * before the old snapshot is taken. The scrollbar is part of the snapshot but not of the fixed
+ * overlay, so both line up against --page-turn-scrollbar.
+ */
+:root {
 	--scallop: 14px;
+}
+
+[data-page-turn='natalie']::view-transition-old(root) {
+	--sb: var(--page-turn-scrollbar, 0px);
 	mask:
-		linear-gradient(#000 0 0) left / calc(100% - var(--scallop)) 100% no-repeat,
-		radial-gradient(circle var(--scallop) at 0 50%, #000 calc(100% - 1px), #0000) right /
-			var(--scallop) calc(var(--scallop) * 2) repeat-y;
+		linear-gradient(#000 0 0) left / calc(100% - var(--scallop) - var(--sb)) 100% no-repeat,
+		radial-gradient(circle var(--scallop) at 0 50%, #000 calc(100% - 1px), #0000) right var(--sb)
+			center / var(--scallop) calc(var(--scallop) * 2) repeat-y;
+}
+
+.page-turn-edge {
+	position: fixed;
+	inset: 0;
+	z-index: 2147483647;
+	pointer-events: none;
+	background: radial-gradient(
+			circle var(--scallop) at 0 50%,
+			#0000 calc(100% - 4px),
+			light-dark(#e8949f, #f0a8b4) calc(100% - 3.5px) calc(100% - 1px),
+			#0000 100%
+		)
+		right center / var(--scallop) calc(var(--scallop) * 2) repeat-y;
 }
 
 @layer base {
