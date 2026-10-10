@@ -80,4 +80,4 @@ export const skills: SkillGroup[] = [
 	{ label: 'Tools', items: ['Git', 'GitHub', 'Vite', 'Bun', 'Playwright', 'MySQL', 'Zod'] }
 ];
 
-export const cvHref = '/trinidad_cv.pdf';
+export const cvHref = '/nathan_trinidad_cv.pdf';

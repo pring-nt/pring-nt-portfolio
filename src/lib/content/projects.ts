@@ -50,7 +50,7 @@ export const projects: Project[] = [
 		summary:
 			'Browser extension that builds conflict-free DLSU schedules. I did QA: testing against acceptance criteria and tracking issues. Reached 1,000+ downloads on Chrome and Firefox.',
 		role: 'qa',
-		site: 'https://animo.li/slottle',
+		site: 'https://slottle-co.vercel.app/',
 		tags: ['react', 'typescript', 'webextensions'],
 		issue: {
 			number: 1,
