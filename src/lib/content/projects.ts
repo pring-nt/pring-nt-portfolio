@@ -18,6 +18,23 @@ export const projects: Project[] = [
 			"ok so nockr exists bc every gpa calculator i tried was soooo annoying?? like why can't i just plan my next term, it's totes not that hard. so i made one!!"
 	},
 	{
+		slug: 'karaokedex',
+		name: 'KaraokeDex',
+		summary:
+			'Phone-first song code search for Platinum Karaoke machines. Printed songbooks go out of date and the song list apps have horrible UI.',
+		role: 'built',
+		repo: 'https://github.com/pring-nt/karaokedex',
+		site: 'https://karaoke-dex.vercel.app',
+		tags: ['sveltekit', 'typescript', 'tailwind', 'pdf parsing'],
+		issue: {
+			number: 9,
+			title: 'karaoke books are outdated and the song list apps have horrible UI',
+			body: "Parsed Platinum's PDF songlists into one search that works on a phone."
+		},
+		natalie:
+			'ok so karaoke books are always sooo outdated and the song list apps have horrible ui?? i just want my song code omg. so i made karaokedex!! pick ur machine, type the song, done. totes faster than flipping pages ( •̀ ω •́ )✧'
+	},
+	{
 		slug: 'enroll_clicker',
 		name: 'enroll_clicker',
 		summary: 'Tired of sniping GE slots?',
