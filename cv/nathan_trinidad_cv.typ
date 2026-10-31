@@ -95,7 +95,7 @@
 #entry(
   [Slottle — QA / Engineering Contributor],
   [Aug 2026 – Present],
-  [Browser extension · React · TypeScript · Tailwind CSS · Vite · Bun · WebExtensions API],
+  [Browser extension · React · TypeScript · Tailwind CSS · Vite · Bun · WebExtensions API · #link("https://slottle-co.vercel.app/")[Live site]],
   [
     #bullet[
       Performed acceptance-criteria-driven QA for a DLSU-focused browser extension that retrieves course offerings and generates conflict-free schedules across Chrome and Firefox.
@@ -153,7 +153,7 @@
 #entry(
   [Nockr — Academic GPA, GWA & Honors Tracker Application],
   [],
-  [Independent project · SvelteKit · TypeScript · Tailwind CSS · Zod · #link("https://github.com/pring-nt/nockr")[GitHub]],
+  [Independent project · SvelteKit · TypeScript · Tailwind CSS · Zod · #link("https://github.com/pring-nt/nockr")[GitHub] · #link("https://nockr.nockr-app.workers.dev/")[Live site]],
   [
     #bullet[
       Independently designed and developed a university-agnostic application for tracking grades, setting GPA goals, projecting grade trajectories, and planning future terms.
